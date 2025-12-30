@@ -28,6 +28,39 @@
     </script>
 
     <style>
+      /* Remove all default borders and add only bottom border */
+      input[type="text"],
+      input[type="tel"],
+      input[type="email"],
+      select {
+        border: none !important;
+        border-bottom: 2px solid white !important;
+        border-radius: 0 !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Keep bottom border on focus */
+      input[type="text"]:focus,
+      input[type="tel"]:focus,
+      input[type="email"]:focus,
+      select:focus {
+        border: none !important;
+        border-bottom: 2px solid white !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Remove select dropdown arrow styling */
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: none;
+      }
+    </style>
+
+    <style>
       .footerTablee a {
         font-size: 16px;
         color: #fff;
@@ -490,6 +523,116 @@
       </div>
     </div>
 
+    <!-- enquire now  -->
+    <div class="w-full max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
+      <!-- Title -->
+      <h1
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-teal-500 tracking-wider"
+      >
+        ENQUIRE NOW
+      </h1>
+
+      <!-- Form Container -->
+      <div class="bg-teal-500 p-6 sm:p-8 md:p-12 lg:p-16">
+        <form id="enquireForm" onsubmit="handleSubmit(event)">
+          <!-- Full Name -->
+          <div class="mb-8 md:mb-12">
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="FULL NAME"
+              class="w-full bg-transparent text-white placeholder-white py-2 md:py-3 px-0 text-sm md:text-base tracking-wide"
+              required
+            />
+          </div>
+
+          <!-- Mobile No -->
+          <div class="mb-8 md:mb-12">
+            <input
+              type="tel"
+              id="mobileNo"
+              name="mobileNo"
+              placeholder="MOBILE NO."
+              class="w-full bg-transparent text-white placeholder-white py-2 md:py-3 px-0 text-sm md:text-base tracking-wide"
+              required
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="mb-8 md:mb-12">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="EMAIL"
+              class="w-full bg-transparent text-white placeholder-white py-2 md:py-3 px-0 text-sm md:text-base tracking-wide"
+              required
+            />
+          </div>
+
+          <!-- Select Project -->
+          <div class="mb-8 md:mb-12">
+            <div
+              class="text-white text-xs md:text-sm mb-1 md:mb-2 tracking-wide"
+            >
+              SELECT PROJECT
+            </div>
+            <select
+              id="project"
+              name="project"
+              class="w-full bg-transparent text-white py-2 md:py-3 px-0 cursor-pointer text-sm md:text-base tracking-wide"
+              required
+            >
+              <option value="" class="bg-teal-500 text-white">
+                SELECT VALUE
+              </option>
+              <option value="project1" class="bg-teal-500 text-white">
+                Project 1
+              </option>
+              <option value="project2" class="bg-teal-500 text-white">
+                Project 2
+              </option>
+              <option value="project3" class="bg-teal-500 text-white">
+                Project 3
+              </option>
+              <option value="other" class="bg-teal-500 text-white">
+                Other
+              </option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="mt-6 md:mt-8">
+            <button
+              type="submit"
+              class="bg-white text-teal-600 font-semibold px-6 md:px-8 py-2 hover:bg-gray-100 transition-colors tracking-wider text-sm md:text-base"
+            >
+              SUBMIT
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function handleSubmit(event) {
+        event.preventDefault();
+
+        const formData = {
+          fullName: document.getElementById("fullName").value,
+          mobileNo: document.getElementById("mobileNo").value,
+          email: document.getElementById("email").value,
+          project: document.getElementById("project").value,
+        };
+
+        console.log("Form submitted:", formData);
+        alert("Thank you for your enquiry! We will get back to you soon.");
+
+        // Reset form
+        document.getElementById("enquireForm").reset();
+      }
+    </script>
     <script>
       let currentSlide = 0;
 
