@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixed Navbar</title>
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        corePlugins: { preflight: false },
+        theme: {
+          extend: {
+            fontFamily: {
+              roboto: ["Roboto", "sans-serif"],
+              matangi: ["Matangi", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      .footerTablee a {
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+        line-height: 26px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .footerTablee a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      /* Smooth transition for mobile menu */
+      #navBar {
+        transition: all 0.3s ease-in-out;
+      }
+
+      /* Hide menu icon on desktop */
+      @media (min-width: 768px) {
+        #navBtn {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- header  -->
+    <div class="flex bg-[#C1C0CD]">
+      <!-- this is logo and all  -->
+      <div class="p-4 flex justify-center items-center">
+        <img src="/img/logo.png" alt="" class="w-14 md:w-28 ml-7" />
+      </div>
+
+      <!-- this is for navigation -->
+      <div class="flex p-9 w-full justify-end items-center gap-4 relative">
+        <ul
+          id="navBar"
+          class="hidden md:flex md:gap-10 list-none md:items-center flex-col md:flex-row gap-4 absolute md:static right-0 top-full bg-white md:bg-transparent w-full md:w-auto p-6 md:p-0 z-50 shadow-lg md:shadow-none"
+        >
+          <li>
+            <a
+              href="#aboutus"
+              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
+              >ABOUT US</a
+            >
+          </li>
+          <li>
+            <a
+              href="#project"
+              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
+              >PROJECTS</a
+            >
+          </li>
+          <li>
+            <a
+              href="#media"
+              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
+              >MEDIA</a
+            >
+          </li>
+          <li>
+            <a
+              href="#nri"
+              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
+              >NRI</a
+            >
+          </li>
+          <li>
+            <a
+              href="#careers"
+              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
+              >CAREERS</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="no-underline text-[#585858] text-lg tracking-wider font-bold hover:text-gray-700"
+              >CONTACT US</a
+            >
+          </li>
+        </ul>
+
+        <button
+          id="navBtn"
+          class="md:hidden cursor-pointer bg-transparent border-none"
+        >
+          <svg
+            class="w-9 h-9 text-gray-700"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- hero section  -->
+    <div class="">
+      <img src="/img/banner.png" alt="" class="w-full mt-6" />
+    </div>
+
+    <!-- about section  -->
+    <div
+      class="flex md:flex-col w-full md:w-[80%] mx-auto md:relative md:bottom-12"
+    >
+      <!-- paragraph -->
+      <div
+        class="text-center bg-[#16A6AC] p-6 md:p-20 font-roboto font-normal text-[25px] tracking-[2.58px] text-black opacity-100 leading-[33px]"
+      >
+        Unite Properties stands as a progressive force in Pune's real estate
+        landscape, crafting contemporary residential and commercial spaces that
+        reflect growth, ambition and smart design. The brand is driven by a keen
+        understanding of evolving market needs and a commitment to operational
+        excellence. With landmark developments across Pune's most promising
+        locations, Unite Properties has built a track record of delivering with
+        precision ensuring timely handovers, financial transparency, and strict
+        regulatory compliance. Its focus remains on creating value-driven spaces
+        that instil trust and upgrade lifestyles!
+      </div>
+
+      <!-- image -->
+      <div></div>
+      <img
+        src="/img/spirel.png"
+        alt="Unite Properties"
+        class="w-56 md:w-auto"
+      />
+    </div>
+
+    <!-- ongoign project  -->
+
+    <div class="md:w-[80%] mx-auto">
+      <!-- Heading (centered only) -->
+      <div class="flex justify-center text-center">
+        <h2
+          class="font-matangi font-bold text-[45px] leading-[70px] tracking-[4.63px] text-[#3CA6AC]"
+        >
+          ONGOING PROJECTS
+        </h2>
+      </div>
+
+      <!-- Projects container (left aligned) -->
+      <div class="mt-16 w-full px-6">
+        <!-- Project item -->
+        <div class="flex flex-col md:flex-row items-stretch">
+          <!-- Image (fixed / max width) -->
+          <img
+            src="/img/proj-1.png"
+            alt="Project"
+            class="w-full md:w-[600px] h-auto"
+          />
+
+          <!-- Text (takes remaining space) -->
+          <div
+            class="flex-1 text-left bg-[#3CA6AC] flex flex-col p-10 font-roboto h-[100%] my-auto"
+          >
+            <p
+              class="pb-2 inline-block text-2xl text-black tracking-[3.09px] font-medium border-b-2 border-black"
+            >
+              iBZ
+            </p>
+
+            <h3 class="mt-6 text-xl font-light tracking-[2.58px] text-black">
+              SHOPS AND OFFICE SPACES
+            </h3>
+
+            <p class="mt-1 text-xl font-light tracking-[3.09px] text-black">
+              At Hinjawadi
+            </p>
+
+            <button
+              class="mt-6 w-fit px-6 py-2 tracking-[2.06px] text-white bg-black"
+            >
+              VIEW MORE
+            </button>
+          </div>
+        </div>
+
+        <!-- project item 2  -->
+
+        <div class="flex flex-col md:flex-row items-stretch">
+          <!-- Text (takes remaining space) -->
+          <div
+            class="flex-1 text-left bg-[#E5E5E5] flex flex-col p-10 font-roboto h-[100%] my-auto items-end"
+          >
+            <p
+              class="pb-2 inline-block text-2xl text-black tracking-[3.09px] font-medium border-b-2 border-black"
+            >
+              REDISION ROYALE
+            </p>
+
+            <h3 class="mt-6 text-xl font-light tracking-[2.58px] text-black">
+              3 BHK HOMES
+            </h3>
+
+            <p class="mt-1 text-xl font-light tracking-[3.09px] text-black">
+              At Kondhwa
+            </p>
+
+            <button
+              class="mt-6 w-fit px-6 py-2 tracking-[2.06px] text-white bg-black"
+            >
+              VIEW MORE
+            </button>
+          </div>
+          <!-- Image (fixed / max width) -->
+          <img
+            src="/img/proj-1.png"
+            alt="Project"
+            class="w-full md:w-[600px] h-auto"
+          />
+        </div>
+
+        <!-- Project item 3 -->
+        <div class="flex flex-col md:flex-row items-stretch">
+          <!-- Image (fixed / max width) -->
+          <img
+            src="/img/proj-1.png"
+            alt="Project"
+            class="w-full md:w-[600px] h-auto"
+          />
+
+          <!-- Text (takes remaining space) -->
+          <div
+            class="flex-1 text-left bg-[#3CA6AC] flex flex-col p-10 font-roboto h-[100%] my-auto"
+          >
+            <p
+              class="pb-2 inline-block text-2xl text-black tracking-[3.09px] font-medium border-b-2 border-black"
+            >
+              iBZ
+            </p>
+
+            <h3 class="mt-6 text-xl font-light tracking-[2.58px] text-black">
+              SHOPS AND OFFICE SPACES
+            </h3>
+
+            <p class="mt-1 text-xl font-light tracking-[3.09px] text-black">
+              At Hinjawadi
+            </p>
+
+            <button
+              class="mt-6 w-fit px-6 py-2 tracking-[2.06px] text-white bg-black"
+            >
+              VIEW MORE
+            </button>
+          </div>
+        </div>
+
+        <!-- project item 4  -->
+
+        <div class="flex flex-col md:flex-row items-stretch">
+          <!-- Text (takes remaining space) -->
+          <div
+            class="flex-1 text-left bg-[#E5E5E5] flex flex-col p-10 font-roboto h-[100%] my-auto items-end"
+          >
+            <p
+              class="pb-2 inline-block text-2xl text-black tracking-[3.09px] font-medium border-b-2 border-black"
+            >
+              REDISION ROYALE
+            </p>
+
+            <h3 class="mt-6 text-xl font-light tracking-[2.58px] text-black">
+              3 BHK HOMES
+            </h3>
+
+            <p class="mt-1 text-xl font-light tracking-[3.09px] text-black">
+              At Kondhwa
+            </p>
+
+            <button
+              class="mt-6 w-fit px-6 py-2 tracking-[2.06px] text-white bg-black"
+            >
+              VIEW MORE
+            </button>
+          </div>
+          <!-- Image (fixed / max width) -->
+          <img
+            src="/img/proj-1.png"
+            alt="Project"
+            class="w-full md:w-[600px] h-auto"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- completed Project Section  -->
+
+    <div></div>
+
+    <script>
+      // Pure JavaScript solution (no jQuery needed for this part)
+      document.addEventListener("DOMContentLoaded", function () {
+        const navBtn = document.getElementById("navBtn");
+        const navBar = document.getElementById("navBar");
+
+        navBtn.addEventListener("click", function () {
+          navBar.classList.toggle("hidden");
+        });
+
+        // Close menu when clicking on a link (mobile)
+        const navLinks = navBar.querySelectorAll("a");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (window.innerWidth < 768) {
+              navBar.classList.add("hidden");
+            }
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (event) {
+          const isClickInsideNav = navBar.contains(event.target);
+          const isClickOnButton = navBtn.contains(event.target);
+
+          if (
+            !isClickInsideNav &&
+            !isClickOnButton &&
+            !navBar.classList.contains("hidden")
+          ) {
+            if (window.innerWidth < 768) {
+              navBar.classList.add("hidden");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
