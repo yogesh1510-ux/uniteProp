@@ -21,6 +21,7 @@
             fontFamily: {
               roboto: ["Roboto", "sans-serif"],
               matangi: ["Matangi", "serif"],
+              helvetica: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
             },
           },
         },
@@ -279,7 +280,7 @@
           </div>
           <!-- Image (fixed / max width) -->
           <img
-            src="/img/proj-1.png"
+            src="/img/proj-2.png"
             alt="Project"
             class="w-full md:w-[600px] h-auto"
           />
@@ -289,7 +290,7 @@
         <div class="flex flex-col md:flex-row items-stretch">
           <!-- Image (fixed / max width) -->
           <img
-            src="/img/proj-1.png"
+            src="/img/proj-3.png"
             alt="Project"
             class="w-full md:w-[600px] h-auto"
           />
@@ -349,7 +350,7 @@
           </div>
           <!-- Image (fixed / max width) -->
           <img
-            src="/img/proj-1.png"
+            src="/img/proj-4.png"
             alt="Project"
             class="w-full md:w-[600px] h-auto"
           />
@@ -527,13 +528,13 @@
     <div class="w-full max-w-xl md:max-w-2xl lg:max-w-3xl mx-auto">
       <!-- Title -->
       <h1
-        class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-teal-500 tracking-wider"
+        class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-[#3CA6AC] tracking-wider"
       >
         ENQUIRE NOW
       </h1>
 
       <!-- Form Container -->
-      <div class="bg-teal-500 p-6 sm:p-8 md:p-12 lg:p-16">
+      <div class="bg-[#3CA6AC] p-6 sm:p-8 md:p-12 lg:p-16">
         <form id="enquireForm" onsubmit="handleSubmit(event)">
           <!-- Full Name -->
           <div class="mb-8 md:mb-12">
@@ -614,6 +615,219 @@
         </form>
       </div>
     </div>
+
+    <!-- blogs  -->
+
+    <div class="mt-10 w-[80%] mx-auto">
+      <!-- Teal Background Container -->
+      <div class="bg-[#3CA6AC] py-12 md:py-16">
+        <!-- Title -->
+        <h1
+          class="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-12 md:mb-16 text-white tracking-wider"
+        >
+          BLOGS
+        </h1>
+
+        <!-- Desktop View - 3 Cards at a time -->
+        <div
+          id="desktopBlogs"
+          class="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8 px-4 lg:px-8 max-w-7xl mx-auto mb-12"
+        >
+          <!-- Cards will be generated dynamically -->
+        </div>
+
+        <!-- Mobile View - Carousel -->
+        <div class="md:hidden px-4 mb-8">
+          <div
+            class="bg-white p-6 shadow-lg mx-auto max-w-sm min-h-[150px] flex items-center justify-center"
+          >
+            <p
+              id="blogTextMobile"
+              class="text-gray-800 text-sm leading-relaxed text-center"
+            >
+              <!-- Text will be updated by JavaScript -->
+            </p>
+          </div>
+        </div>
+
+        <!-- Indicators -->
+        <div
+          id="blogIndicators"
+          class="flex justify-center gap-3 mt-8 flex-wrap px-4"
+        >
+          <!-- Indicators will be generated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- footer  -->
+    <footer class="bg-gray-200 py-12 md:py-16 px-6 md:px-12 lg:px-16 mt-5">
+      <div class="w-full">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16 items-start justify-between"
+        >
+          <!-- Logo Section -->
+          <div class="flex justify-start md:ml-44 font-roboto font-normal">
+            <img src="/img/logo.png" alt="" class="w-44" />
+          </div>
+
+          <!-- Corporate Office Section -->
+          <div class="text-left font-roboto tracking-[2.27px]">
+            <h3
+              class="font-medium text-[#464646] mb-3 tracking-[2.27px] text-[29px]"
+            >
+              CORPORATE OFFICE
+            </h3>
+            <p
+              class="text-[#393939] leading-relaxed font-normal font-helvetica text-[24px]"
+            >
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+            </p>
+          </div>
+
+          <!-- Contact Section -->
+          <div class="text-left">
+            <p class="font-medium text-[#393939] font-roboto mb-2 text-[26px]">
+              +91 00000 00000
+            </p>
+            <p class="text-[#393939] font-roboto text-[32px]">
+              Lorem ipsum dolor sit a
+            </p>
+          </div>
+
+          <!-- Social Media Section -->
+          <div class="flex justify-start gap-4 items-start">
+            <img src="/img/facebook.png" alt="" class="" />
+            <img src="/img/youtube.png" alt="" class="" />
+            <img src="/img/insta.png" alt="" class="" />
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      let currentBlog = 0;
+      let autoAdvanceInterval = null;
+
+      const blogs = [
+        {
+          id: 1,
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 2,
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+        },
+        {
+          id: 3,
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 4,
+          text: "test ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 5,
+          text: "2test ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 6,
+          text: "3test ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 7,
+          text: "4test ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+      ];
+
+      // Generate desktop cards (show 3 at a time based on current position)
+      function updateDesktopBlogs() {
+        const container = document.getElementById("desktopBlogs");
+        container.innerHTML = "";
+
+        // Calculate which 3 blogs to show based on currentBlog
+        const startIndex = currentBlog;
+        const blogsToShow = [];
+
+        for (let i = 0; i < 3; i++) {
+          const index = (startIndex + i) % blogs.length;
+          blogsToShow.push(blogs[index]);
+        }
+
+        blogsToShow.forEach((blog) => {
+          const card = document.createElement("div");
+          card.className = "bg-white p-6 lg:p-8 shadow-lg";
+          card.innerHTML = `<p class="text-gray-800 text-sm lg:text-base leading-relaxed text-center">${blog.text}</p>`;
+          container.appendChild(card);
+        });
+      }
+
+      // Generate indicators dynamically
+      function initIndicators() {
+        const indicatorsContainer = document.getElementById("blogIndicators");
+        indicatorsContainer.innerHTML = "";
+
+        blogs.forEach((blog, index) => {
+          const button = document.createElement("button");
+          button.onclick = () => goToBlog(index);
+          button.className =
+            index === 0
+              ? "w-3 h-3 rounded-full bg-white transition-opacity"
+              : "w-3 h-3 rounded-full bg-white opacity-50 transition-opacity";
+          button.setAttribute("aria-label", `Go to blog ${index + 1}`);
+          indicatorsContainer.appendChild(button);
+        });
+      }
+
+      function updateBlog() {
+        // Update desktop blogs
+        updateDesktopBlogs();
+
+        // Update mobile text
+        const mobileText = document.getElementById("blogTextMobile");
+        if (mobileText) {
+          mobileText.textContent = blogs[currentBlog].text;
+        }
+
+        // Update indicators
+        const indicators = document.getElementById("blogIndicators").children;
+        for (let i = 0; i < indicators.length; i++) {
+          if (i === currentBlog) {
+            indicators[i].className =
+              "w-3 h-3 rounded-full bg-white transition-opacity";
+          } else {
+            indicators[i].className =
+              "w-3 h-3 rounded-full bg-white opacity-50 transition-opacity";
+          }
+        }
+      }
+
+      function goToBlog(index) {
+        currentBlog = index;
+        updateBlog();
+
+        // Reset auto-advance timer when manually navigating
+        if (autoAdvanceInterval && window.innerWidth < 768) {
+          clearInterval(autoAdvanceInterval);
+          startAutoAdvance();
+        }
+      }
+
+      function startAutoAdvance() {
+        autoAdvanceInterval = setInterval(() => {
+          currentBlog = (currentBlog + 1) % blogs.length;
+          updateBlog();
+        }, 5000);
+      }
+
+      // Initialize everything when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        initIndicators();
+        updateBlog(); // Set initial blogs
+        startAutoAdvance();
+      });
+    </script>
 
     <script>
       function handleSubmit(event) {
