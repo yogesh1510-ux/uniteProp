@@ -325,9 +325,228 @@
     </div>
 
     <!-- completed Project Section  -->
+    <div
+      class="w-full md:w-[90%] lg:w-[77%] mx-auto mt-8 md:mt-16 px-4 md:px-0"
+    >
+      <!-- Title -->
+      <h1
+        class="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 lg:mb-16 text-teal-500 tracking-wider"
+      >
+        COMPLETED PROJECTS
+      </h1>
 
-    <div></div>
+      <!-- Carousel Container -->
+      <div class="relative bg-gray-200 py-8 md:py-12 lg:py-20 px-2 md:px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Desktop Layout -->
+          <div
+            class="hidden md:flex items-center justify-between gap-4 lg:gap-8"
+          >
+            <!-- Left Arrow -->
+            <button
+              onclick="prevSlide()"
+              class="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-gray-600 hover:bg-gray-700 transition-colors"
+              aria-label="Previous slide"
+            >
+              <svg
+                class="w-8 h-8 lg:w-10 lg:h-10 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                ></path>
+              </svg>
+            </button>
 
+            <!-- Content Area -->
+            <div class="flex-1 flex items-center justify-center gap-4 lg:gap-8">
+              <!-- Image Placeholder -->
+              <div
+                class="w-64 h-48 lg:w-96 lg:h-64 bg-white border-2 border-gray-400 flex-shrink-0"
+              ></div>
+
+              <!-- Text Content -->
+              <div class="flex-1 max-w-md">
+                <p
+                  id="slideText"
+                  class="text-gray-800 text-base lg:text-lg leading-relaxed"
+                >
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                  aliquam erat volutpat.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right Arrow -->
+            <button
+              onclick="nextSlide()"
+              class="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-gray-600 hover:bg-gray-700 transition-colors"
+              aria-label="Next slide"
+            >
+              <svg
+                class="w-8 h-8 lg:w-10 lg:h-10 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Mobile Layout -->
+          <div class="md:hidden">
+            <!-- Content Area -->
+            <div class="flex flex-col items-center gap-6">
+              <!-- Image Placeholder -->
+              <div
+                class="w-full max-w-sm h-48 bg-white border-2 border-gray-400"
+              ></div>
+
+              <!-- Text Content -->
+              <div class="px-4">
+                <p
+                  id="slideTextMobile"
+                  class="text-gray-800 text-base leading-relaxed text-center"
+                >
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                  aliquam erat volutpat.
+                </p>
+              </div>
+
+              <!-- Navigation Arrows -->
+              <div class="flex items-center gap-8">
+                <button
+                  onclick="prevSlide()"
+                  class="w-12 h-12 flex items-center justify-center bg-gray-600 hover:bg-gray-700 transition-colors"
+                  aria-label="Previous slide"
+                >
+                  <svg
+                    class="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 19l-7-7 7-7"
+                    ></path>
+                  </svg>
+                </button>
+
+                <button
+                  onclick="nextSlide()"
+                  class="w-12 h-12 flex items-center justify-center bg-gray-600 hover:bg-gray-700 transition-colors"
+                  aria-label="Next slide"
+                >
+                  <svg
+                    class="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide Indicators -->
+        <div id="indicators" class="flex justify-center gap-2 mt-6 md:mt-8">
+          <button
+            onclick="goToSlide(0)"
+            class="w-3 h-3 rounded-full bg-teal-500"
+          ></button>
+          <button
+            onclick="goToSlide(1)"
+            class="w-3 h-3 rounded-full bg-gray-400"
+          ></button>
+          <button
+            onclick="goToSlide(2)"
+            class="w-3 h-3 rounded-full bg-gray-400"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+
+      const projects = [
+        {
+          id: 1,
+          description:
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        },
+        {
+          id: 2,
+          description:
+            "Second project description goes here. This is a sample text for the second completed project in the carousel.",
+        },
+        {
+          id: 3,
+          description:
+            "Third project description. Another completed project showcasing different work and achievements in our portfolio.",
+        },
+      ];
+
+      function updateSlide() {
+        const desktopText = document.getElementById("slideText");
+        const mobileText = document.getElementById("slideTextMobile");
+
+        if (desktopText) {
+          desktopText.textContent = projects[currentSlide].description;
+        }
+        if (mobileText) {
+          mobileText.textContent = projects[currentSlide].description;
+        }
+
+        const indicators = document.getElementById("indicators").children;
+        for (let i = 0; i < indicators.length; i++) {
+          if (i === currentSlide) {
+            indicators[i].className = "w-3 h-3 rounded-full bg-teal-500";
+          } else {
+            indicators[i].className = "w-3 h-3 rounded-full bg-gray-400";
+          }
+        }
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % projects.length;
+        updateSlide();
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + projects.length) % projects.length;
+        updateSlide();
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlide();
+      }
+    </script>
     <script>
       // Pure JavaScript solution (no jQuery needed for this part)
       document.addEventListener("DOMContentLoaded", function () {
