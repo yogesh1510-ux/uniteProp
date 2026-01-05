@@ -12,24 +12,382 @@
       rel="stylesheet"
     />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        corePlugins: { preflight: false },
-        theme: {
-          extend: {
-            fontFamily: {
-              roboto: ["Roboto", "sans-serif"],
-              matangi: ["Matangi", "serif"],
-              helvetica: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-
     <style>
-      /* Remove all default borders and add only bottom border */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+
+      /* Font families */
+      .font-roboto {
+        font-family: "Roboto", sans-serif;
+      }
+
+      .font-matangi {
+        font-family: "Matangi", serif;
+      }
+
+      /* Header styles */
+      .header {
+        display: flex;
+        background-color: #c1c0cd;
+      }
+
+      .logo-container {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo {
+        width: 3.5rem;
+        margin-left: 1.75rem;
+      }
+
+      .nav-container {
+        display: flex;
+        padding: 2.25rem;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+      }
+
+      #navBar {
+        display: none;
+        list-style: none;
+        gap: 1rem;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background-color: white;
+        width: 100%;
+        padding: 1.5rem;
+        z-index: 50;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+      }
+
+      #navBar.show {
+        display: flex;
+      }
+
+      #navBar a {
+        text-decoration: none;
+        color: #585858;
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        font-weight: bold;
+      }
+
+      #navBar a:hover {
+        color: #374151;
+      }
+
+      #navBtn {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+
+      #navBtn svg {
+        width: 2.25rem;
+        height: 2.25rem;
+        color: #374151;
+      }
+
+      /* Hero section */
+      .hero-section {
+        background-color: #ffffff;
+        height: 250px;
+        width: 100%;
+        margin: 0;
+        padding-top: 0;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow: visible;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        top: 0;
+      }
+
+      .hero-text {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        letter-spacing: 4.63px;
+        color: #ffffff;
+        font-size: 45px;
+        font-family: "Matangi", serif;
+        padding-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      /* Leadership section */
+      .leadership-title {
+        margin-top: 4rem;
+        text-align: center;
+        color: #3ca6ac;
+        letter-spacing: 4.63px;
+        font-size: 28px;
+        font-family: "Matangi", serif;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .founders-container {
+        margin-top: 3rem;
+      }
+
+      .founder-card {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+        background-color: #dedede;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .founder-header {
+        display: flex;
+        flex-direction: column;
+        padding-top: 0.75rem;
+      }
+
+      .founder-name {
+        font-size: 24px;
+        letter-spacing: 2.5px;
+        color: #3ca6ac;
+        font-family: "Matangi", serif;
+      }
+
+      .founder-title {
+        font-size: 18px;
+        font-family: "Roboto", sans-serif;
+        color: #000000;
+        letter-spacing: 1.5px;
+        margin-top: 0.25rem;
+      }
+
+      .founder-description {
+        width: 100%;
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        font-weight: normal;
+        color: #555252;
+        letter-spacing: 1px;
+        padding-bottom: 1.5rem;
+        padding-left: 0;
+      }
+
+      /* Vision/Mission section */
+      .vision-mission-container {
+        max-width: 80rem;
+        margin: 3.5rem auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        position: relative;
+      }
+
+      .vertical-bar {
+        position: absolute;
+        left: 2rem;
+        top: 0;
+        bottom: 0;
+        width: 5rem;
+        background-color: #3ca6ac;
+        z-index: 10;
+        display: none;
+      }
+
+      .vm-section {
+        position: relative;
+        margin-bottom: 2rem;
+      }
+
+      .vm-content {
+        background-color: #dedede;
+        padding: 1.5rem;
+        position: relative;
+      }
+
+      .vm-label-desktop {
+        position: absolute;
+        top: 1rem;
+        left: 2rem;
+        background-color: white;
+        padding: 0.5rem 1.5rem;
+        z-index: 20;
+        display: none;
+      }
+
+      .vm-label-desktop h2 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: #3ca6ac;
+        font-family: "Matangi", serif;
+        letter-spacing: 3.65px;
+      }
+
+      .vm-label-mobile {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        margin-left: -1.5rem;
+        margin-top: -1.5rem;
+      }
+
+      .vm-bar-mobile {
+        width: 3rem;
+        height: 4rem;
+        background-color: #3ca6ac;
+        margin-right: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .vm-label-mobile-inner {
+        background-color: white;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        align-self: flex-start;
+        margin-top: 0.5rem;
+      }
+
+      .vm-label-mobile h2 {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #3ca6ac;
+        font-family: "Matangi", serif;
+        letter-spacing: 2.5px;
+      }
+
+      .vm-text {
+        color: #1f2937;
+        font-size: 0.875rem;
+        line-height: 1.625;
+        font-family: "Roboto", sans-serif;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #e5e7eb;
+        padding: 2rem 1rem;
+        margin-top: 1.25rem;
+      }
+
+      .footer-container {
+        max-width: 80rem;
+        margin: 0 auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .footer-logo-section {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .footer-logo {
+        width: 8rem;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .footer-office-section {
+        text-align: center;
+      }
+
+      .footer-office-title {
+        font-weight: 500;
+        color: #2d2d2d;
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.05em;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .footer-office-text {
+        color: #393939;
+        line-height: 1.625;
+        font-size: 0.75rem;
+        font-weight: normal;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .footer-contact-section {
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .footer-phone {
+        font-weight: 500;
+        color: #2d2d2d;
+        margin-bottom: 0.25rem;
+        font-size: 0.75rem;
+      }
+
+      .footer-email {
+        color: #393939;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .footer-social-section {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .footer-social-icon {
+        width: 2.5rem;
+        height: auto;
+      }
+
+      .footerTablee a {
+        font-size: 16px;
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+        line-height: 26px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .footerTablee a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      /* Input styles */
       input[type="text"],
       input[type="tel"],
       input[type="email"],
@@ -41,7 +399,6 @@
         box-shadow: none !important;
       }
 
-      /* Keep bottom border on focus */
       input[type="text"]:focus,
       input[type="tel"]:focus,
       input[type="email"]:focus,
@@ -52,39 +409,272 @@
         box-shadow: none !important;
       }
 
-      /* Remove select dropdown arrow styling */
       select {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
         background-image: none;
       }
-    </style>
 
-    <style>
-      .footerTablee a {
-        font-size: 16px;
-        color: #fff;
-        text-decoration: none;
-        display: inline-block;
-        line-height: 26px;
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-      .footerTablee a:hover {
-        color: #fff;
-        text-decoration: underline;
+      /* Media queries for tablet and desktop */
+      @media (min-width: 640px) {
+        .hero-section {
+          background-color: #3ca6ac;
+          height: 400px;
+          width: 95%;
+          margin-top: 5rem;
+        }
+
+        .hero-image {
+          top: 10%;
+        }
+
+        .hero-text {
+          padding-bottom: 2rem;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .footer-logo {
+          width: 9rem;
+        }
+
+        .footer-logo-section,
+        .footer-office-section,
+        .footer-contact-section {
+          text-align: left;
+          justify-content: flex-start;
+        }
+
+        .footer-social-section {
+          justify-content: flex-start;
+        }
+
+        .footer-social-icon {
+          width: 2.75rem;
+        }
+
+        .footer-office-title,
+        .footer-office-text,
+        .footer-phone,
+        .footer-email {
+          font-size: 0.875rem;
+        }
       }
 
-      /* Smooth transition for mobile menu */
-      #navBar {
-        transition: all 0.3s ease-in-out;
-      }
-
-      /* Hide menu icon on desktop */
       @media (min-width: 768px) {
+        .logo {
+          width: 7rem;
+        }
+
         #navBtn {
           display: none;
+        }
+
+        #navBar {
+          display: flex;
+          flex-direction: row;
+          gap: 2.5rem;
+          align-items: center;
+          position: static;
+          background-color: transparent;
+          width: auto;
+          padding: 0;
+          box-shadow: none;
+        }
+
+        .hero-section {
+          height: 600px;
+          width: 90%;
+          margin-top: 6rem;
+        }
+
+        .hero-image {
+          position: absolute;
+          width: 130%;
+          max-width: none;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 12%;
+          height: auto;
+        }
+
+        .hero-text {
+          padding-bottom: 3rem;
+        }
+
+        .leadership-title {
+          font-size: 45px;
+        }
+
+        .founders-container {
+          margin-top: 5rem;
+        }
+
+        .founder-card {
+          flex-direction: row;
+          width: 80%;
+          padding: 2.5rem;
+          margin-bottom: 2.5rem;
+        }
+
+        .founder-card:nth-child(odd) {
+          margin-left: auto;
+        }
+
+        .founder-card:nth-child(even) {
+          margin-right: auto;
+        }
+
+        .founder-header {
+          flex: 3;
+          padding: 6rem 0;
+          margin: auto 0;
+        }
+
+        .founder-name {
+          font-size: 40px;
+          letter-spacing: 4.63px;
+        }
+
+        .founder-title {
+          font-size: 25px;
+          letter-spacing: 2.68px;
+        }
+
+        .founder-description {
+          width: 77%;
+          font-size: 20px;
+          letter-spacing: 2.58px;
+          padding: 5rem 0;
+          margin: auto 0;
+        }
+
+        .vertical-bar {
+          display: block;
+          left: 5rem;
+        }
+
+        .vm-section {
+          margin-bottom: 0;
+        }
+
+        .vm-content {
+          padding: 2.5rem;
+          padding-left: 10rem;
+        }
+
+        .vm-label-desktop {
+          display: block;
+          left: 2.5rem;
+          padding: 0.75rem 7rem;
+        }
+
+        .vm-label-desktop h2 {
+          font-size: 1.5rem;
+        }
+
+        .vm-label-mobile {
+          display: none;
+        }
+
+        .vm-text {
+          font-size: 1rem;
+          padding-top: 2rem;
+        }
+
+        .vm-section:last-child .vm-content {
+          margin-top: 2.5rem;
+        }
+
+        .vm-section:last-child .vm-label-desktop {
+          margin-top: 0.5rem;
+        }
+
+        .vm-section:last-child .vm-text {
+          padding-top: 2.5rem;
+        }
+
+        footer {
+          padding: 3rem 1.5rem;
+        }
+
+        .footer-grid {
+          gap: 3rem;
+        }
+
+        .footer-logo {
+          width: 10rem;
+        }
+
+        .footer-social-icon {
+          width: 3rem;
+        }
+
+        .footer-social-section {
+          gap: 1rem;
+        }
+
+        .footer-office-title,
+        .footer-office-text,
+        .footer-phone,
+        .footer-email {
+          font-size: 1rem;
+        }
+
+        .footer-office-title {
+          margin-bottom: 1rem;
+        }
+
+        .footer-phone {
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .hero-section {
+          height: 800px;
+          width: 1200px;
+          margin-top: 7rem;
+        }
+
+        .hero-image {
+          top: 14%;
+        }
+
+        .hero-text {
+          padding-bottom: 4rem;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 4rem;
+        }
+
+        .footer-logo {
+          width: 12rem;
+        }
+
+        .footer-social-icon {
+          width: 3.5rem;
+        }
+
+        footer {
+          padding: 4rem;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .hero-section {
+          height: 1000px;
+          width: 1468px;
+          margin-top: 8rem;
+        }
+
+        .hero-image {
+          top: 15%;
         }
       }
     </style>
@@ -92,79 +682,40 @@
 
   <body>
     <!-- header  -->
-    <div class="flex bg-[#C1C0CD]">
+    <div class="header">
       <!-- this is logo and all  -->
-      <div class="p-4 flex justify-center items-center">
-        <img src="img/logo.png" alt="" class="w-14 md:w-28 ml-7" />
+      <div class="logo-container">
+        <img src="img/logo.png" alt="" class="logo" />
       </div>
 
       <!-- this is for navigation -->
-      <div class="flex p-9 w-full justify-end items-center gap-4 relative">
-        <ul
-          id="navBar"
-          class="hidden md:flex md:gap-10 list-none md:items-center flex-col md:flex-row gap-4 absolute md:static right-0 top-full bg-white md:bg-transparent w-full md:w-auto p-6 md:p-0 z-50 shadow-lg md:shadow-none"
-        >
+      <div class="nav-container">
+        <ul id="navBar">
           <li>
-            <a
-              href="index.html"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >HOME</a
-            >
+            <a href="index.html">HOME</a>
           </li>
           <li>
-            <a
-              href="about.html"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >ABOUT US</a
-            >
+            <a href="about.html">ABOUT US</a>
           </li>
           <li>
-            <a
-              href="project.html"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >PROJECTS</a
-            >
+            <a href="project.html">PROJECTS</a>
           </li>
           <li>
-            <a
-              href="#media"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >MEDIA</a
-            >
+            <a href="#media">MEDIA</a>
           </li>
           <li>
-            <a
-              href="#nri"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >NRI</a
-            >
+            <a href="#nri">NRI</a>
           </li>
           <li>
-            <a
-              href="#careers"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >CAREERS</a
-            >
+            <a href="#careers">CAREERS</a>
           </li>
           <li>
-            <a
-              href="#contact"
-              class="no-underline text-[#585858] text-lg tracking-wider font-bold hover:text-gray-700"
-              >CONTACT US</a
-            >
+            <a href="#contact">CONTACT US</a>
           </li>
         </ul>
 
-        <button
-          id="navBtn"
-          class="md:hidden cursor-pointer bg-transparent border-none"
-        >
-          <svg
-            class="w-9 h-9 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+        <button id="navBtn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -177,54 +728,27 @@
     </div>
 
     <!-- hero section  -->
+    <div class="hero-section">
+      <img src="img/banner-5.png" alt="" class="hero-image" />
 
-    <div
-      class="sm:bg-[#3CA6AC] bg-[#FFFFFF] h-[250px] sm:h-[400px] md:h-[600px] lg:h-[800px] xl:h-[1000px] w-full sm:w-[95%] md:w-[90%] lg:w-[1200px] xl:w-[1468px] sm:mt-20 md:mt-24 lg:mt-28 xl:mt-32 mt-0 pt-0 mx-auto relative overflow-visible"
-    >
-      <img
-        src="img/banner-5.png"
-        alt=""
-        class="/* mobile */ w-full h-[100%] block mx-auto relative top-0 sm:top-[10%] /* desktop */ md:absolute md:w-[130%] md:max-w-none md:left-1/2 md:-translate-x-1/2 md:top-[12%] sm:h-auto lg:top-[14%] xl:top-[15%]"
-      />
-
-      <p
-        class="absolute bottom-0 left-0 right-0 text-center tracking-[4.63px] text-[#FFFFFF] text-[45px] font-matangi pb-4 sm:pb-8 md:pb-12 lg:pb-16 px-4"
-      >
-        A PEEK INTO WHERE WE STAND UNITED!
-      </p>
+      <p class="hero-text">A PEEK INTO WHERE WE STAND UNITED!</p>
     </div>
-    <!-- info section  -->
 
-    <div class="mt-16">
-      <h2
-        class="text-center text-[#3CA6AC] tracking-[4.63px] md:tracking-[4.63px] text-[28px] md:text-[45px] font-matangi px-4"
-      >
-        MEET THE LEADERSHIP
-      </h2>
+    <!-- info section  -->
+    <div>
+      <h2 class="leadership-title">MEET THE LEADERSHIP</h2>
 
       <!-- founders -->
-      <div class="mt-12 md:mt-20">
+      <div class="founders-container">
         <!-- first founder -->
-        <div
-          class="flex flex-col md:flex-row w-full md:w-[80%] md:ml-auto gap-4 md:gap-4 bg-[#DEDEDE] px-6 md:px-10"
-        >
+        <div class="founder-card">
           <!-- name and title -->
-          <div class="flex flex-col md:flex-3 pt-3 md:py-24 md:my-auto">
-            <h2
-              class="text-[24px] md:text-[40px] tracking-[2.5px] md:tracking-[4.63px] text-[#3CA6AC] font-matangi"
-            >
-              SAURAV SHAH
-            </h2>
-            <p
-              class="text-[18px] md:text-[25px] font-roboto text-[#000000] tracking-[1.5px] md:tracking-[2.68px] mt-1"
-            >
-              Founder
-            </p>
+          <div class="founder-header">
+            <h2 class="founder-name">SAURAV SHAH</h2>
+            <p class="founder-title">Founder</p>
           </div>
           <!-- founder info para -->
-          <div
-            class="w-full md:w-[77%] md:my-auto text-[14px] md:text-[20px] font-roboto font-normal text-[#555252] tracking-[1px] md:tracking-[2.58px] pb-6 md:py-20 px-0"
-          >
+          <div class="founder-description">
             Saurav leads Unite Properties with passion and a forward-thinking
             mindset. With a background in Finance and Entrepreneurship, he
             brings over 13 years of real estate experience to the forefront. His
@@ -239,26 +763,14 @@
         </div>
 
         <!-- second founder -->
-        <div
-          class="flex flex-col md:flex-row w-full md:w-[80%] md:mr-auto gap-4 md:gap-4 bg-[#DEDEDE] px-6 md:px-10 mt-6 md:mt-10"
-        >
+        <div class="founder-card">
           <!-- name and title -->
-          <div class="flex flex-col md:flex-3 pt-3 md:py-24 md:my-auto">
-            <h2
-              class="text-[24px] md:text-[40px] tracking-[2.5px] md:tracking-[4.63px] text-[#3CA6AC] font-matangi"
-            >
-              SAURAV SHAH
-            </h2>
-            <p
-              class="text-[18px] md:text-[25px] font-roboto text-[#000000] tracking-[1.5px] md:tracking-[2.68px] mt-1"
-            >
-              Founder
-            </p>
+          <div class="founder-header">
+            <h2 class="founder-name">SAURAV SHAH</h2>
+            <p class="founder-title">Founder</p>
           </div>
           <!-- founder info para -->
-          <div
-            class="w-full md:w-[77%] md:my-auto text-[14px] md:text-[20px] font-roboto font-normal text-[#555252] tracking-[1px] md:tracking-[2.58px] pb-6 md:py-20 px-0"
-          >
+          <div class="founder-description">
             Saurav leads Unite Properties with passion and a forward-thinking
             mindset. With a background in Finance and Entrepreneurship, he
             brings over 13 years of real estate experience to the forefront. His
@@ -273,42 +785,29 @@
         </div>
       </div>
     </div>
+
     <!-- vision and mission -->
-    <div class="max-w-7xl mx-auto mt-14 px-4 relative">
+    <div class="vision-mission-container">
       <!-- Vertical teal bar (desktop only) -->
-      <div
-        class="absolute left-8 sm:left-12 md:left-20 top-0 bottom-0 w-20 bg-[#3CA6AC] z-10 hidden md:block"
-      ></div>
+      <div class="vertical-bar"></div>
 
       <!-- Vision section -->
-      <div class="relative mb-8 md:mb-0">
-        <div class="bg-[#DEDEDE] p-6 md:p-10 md:pl-40 relative">
+      <div class="vm-section">
+        <div class="vm-content">
           <!-- Floating white label (desktop) -->
-          <div
-            class="absolute top-4 left-8 sm:left-12 md:left-10 bg-white px-6 md:px-28 py-2 md:py-3 z-20 hidden md:block"
-          >
-            <h2
-              class="text-xl md:text-2xl font-bold text-[#3CA6AC] font-matangi tracking-[3.65px]"
-            >
-              VISION
-            </h2>
+          <div class="vm-label-desktop">
+            <h2>VISION</h2>
           </div>
 
           <!-- Mobile heading with left teal bar -->
-          <div class="md:hidden flex items-start mb-4 -ml-6 -mt-6">
-            <div class="w-12 h-16 bg-[#3CA6AC] mr-3 flex-shrink-0"></div>
-            <div class="bg-white px-4 py-2 flex items-center self-start mt-2">
-              <h2
-                class="text-base font-bold text-[#3CA6AC] font-matangi tracking-[2.5px]"
-              >
-                VISION
-              </h2>
+          <div class="vm-label-mobile">
+            <div class="vm-bar-mobile"></div>
+            <div class="vm-label-mobile-inner">
+              <h2>VISION</h2>
             </div>
           </div>
 
-          <p
-            class="text-gray-800 text-sm md:text-base leading-relaxed md:pt-8 font-roboto"
-          >
+          <p class="vm-text">
             We are committed to delivering an exceptional real estate
             experience, driven by innovation, ambition and a people-first
             approach.
@@ -317,34 +816,22 @@
       </div>
 
       <!-- Mission section -->
-      <div class="relative">
-        <div class="bg-[#DEDEDE] p-6 md:p-10 md:pl-40 relative mt-6 md:mt-10">
+      <div class="vm-section">
+        <div class="vm-content">
           <!-- Floating white label (desktop) -->
-          <div
-            class="absolute top-4 left-8 sm:left-12 md:left-10 bg-white px-6 md:px-28 py-2 md:py-3 z-20 hidden md:block mt-2"
-          >
-            <h2
-              class="text-xl md:text-2xl font-bold text-[#3CA6AC] font-matangi tracking-[3.65px]"
-            >
-              MISSION
-            </h2>
+          <div class="vm-label-desktop">
+            <h2>MISSION</h2>
           </div>
 
           <!-- Mobile heading with left teal bar -->
-          <div class="md:hidden flex items-start mb-4 -ml-6 -mt-6">
-            <div class="w-12 h-16 bg-[#3CA6AC] mr-3 flex-shrink-0"></div>
-            <div class="bg-white px-4 py-2 flex items-center self-start mt-2">
-              <h2
-                class="text-base font-bold text-[#3CA6AC] font-matangi tracking-[2.5px]"
-              >
-                MISSION
-              </h2>
+          <div class="vm-label-mobile">
+            <div class="vm-bar-mobile"></div>
+            <div class="vm-label-mobile-inner">
+              <h2>MISSION</h2>
             </div>
           </div>
 
-          <p
-            class="text-gray-800 text-sm md:text-base leading-relaxed md:pt-10 font-roboto"
-          >
+          <p class="vm-text">
             We strive to create benchmark spaces that nurture lasting
             relationships and contribute meaningfully to the communities we
             serve.
@@ -353,69 +840,49 @@
       </div>
     </div>
 
-    <footer
-      class="bg-gray-200 py-8 md:py-12 lg:py-16 px-4 md:px-6 lg:px-16 mt-5"
-    >
-      <div class="max-w-7xl mx-auto">
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16 items-start"
-        >
+    <footer>
+      <div class="footer-container">
+        <div class="footer-grid">
           <!-- Logo Section -->
-          <div class="flex justify-center sm:justify-start items-start">
+          <div class="footer-logo-section">
             <img
               src="img/logo.png"
               alt="Unite Properties Logo"
-              class="w-32 sm:w-36 md:w-40 lg:w-48 h-auto object-contain"
+              class="footer-logo"
             />
           </div>
 
           <!-- Corporate Office Section -->
-          <div class="text-center sm:text-left">
-            <h3
-              class="font-medium text-[#2d2d2d] mb-3 md:mb-4 tracking-wider text-xs sm:text-sm md:text-base uppercase font-roboto"
-            >
-              CORPORATE OFFICE
-            </h3>
-            <p
-              class="text-[#393939] leading-relaxed text-xs sm:text-sm md:text-base font-normal font-roboto"
-            >
+          <div class="footer-office-section">
+            <h3 class="footer-office-title">CORPORATE OFFICE</h3>
+            <p class="footer-office-text">
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
               nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
             </p>
           </div>
 
           <!-- Contact Section -->
-          <div class="text-center sm:text-left font-roboto">
-            <p
-              class="font-medium text-[#2d2d2d] mb-1 md:mb-2 text-xs sm:text-sm md:text-base"
-            >
-              +91 00000 00000
-            </p>
-            <p
-              class="text-[#393939] text-xs sm:text-sm md:text-base font-medium"
-            >
-              Lorem ipsum dolor sit a
-            </p>
+          <div class="footer-contact-section">
+            <p class="footer-phone">+91 00000 00000</p>
+            <p class="footer-email">Lorem ipsum dolor sit a</p>
           </div>
 
           <!-- Social Media Section -->
-          <div
-            class="flex justify-center sm:justify-start gap-3 md:gap-4 items-start"
-          >
+          <div class="footer-social-section">
             <img
               src="img/facebook.png"
               alt="Facebook"
-              class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
+              class="footer-social-icon"
             />
             <img
               src="img/youtube.png"
               alt="YouTube"
-              class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
+              class="footer-social-icon"
             />
             <img
               src="img/insta.png"
               alt="Instagram"
-              class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
+              class="footer-social-icon"
             />
           </div>
         </div>
@@ -448,13 +915,12 @@
     </script>
 
     <script>
-      // Pure JavaScript solution (no jQuery needed for this part)
       document.addEventListener("DOMContentLoaded", function () {
         const navBtn = document.getElementById("navBtn");
         const navBar = document.getElementById("navBar");
 
         navBtn.addEventListener("click", function () {
-          navBar.classList.toggle("hidden");
+          navBar.classList.toggle("show");
         });
 
         // Close menu when clicking on a link (mobile)
@@ -462,7 +928,7 @@
         navLinks.forEach((link) => {
           link.addEventListener("click", function () {
             if (window.innerWidth < 768) {
-              navBar.classList.add("hidden");
+              navBar.classList.remove("show");
             }
           });
         });
@@ -475,10 +941,10 @@
           if (
             !isClickInsideNav &&
             !isClickOnButton &&
-            !navBar.classList.contains("hidden")
+            navBar.classList.contains("show")
           ) {
             if (window.innerWidth < 768) {
-              navBar.classList.add("hidden");
+              navBar.classList.remove("show");
             }
           }
         });
