@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/app.css" />
-    <link rel="stylesheet" href="./css/jquery.bxslider.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/jquery.bxslider.css" />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
@@ -65,6 +65,7 @@
         background-image: none;
       }
     </style>
+    
 
     <style>
       .footerTablee a {
@@ -93,6 +94,28 @@
         }
       }
     </style>
+    <style>
+  /* Nuclear option - force footer alignment */
+  footer.bg-gray-200 * {
+    font-size: inherit !important;
+  }
+  
+  footer.bg-gray-200 .grid {
+    display: grid !important;
+    align-items: start !important;
+  }
+  
+  footer.bg-gray-200 .grid > div {
+    align-self: start !important;
+    vertical-align: top !important;
+  }
+  
+  @media (min-width: 640px) {
+    footer.bg-gray-200 .sm\:text-left {
+      text-align: left !important;
+    }
+  }
+</style>
   </head>
 
   <body>
@@ -111,14 +134,14 @@
         >
           <li>
             <a
-              href="/index.html"
+              href="index.html"
               class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
               >HOME</a
             >
           </li>
           <li>
             <a
-              href="/about.html"
+              href="about.html"
               class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
               >ABOUT US</a
             >
@@ -181,22 +204,405 @@
       </div>
     </div>
 
-
-
-<!-- hero section  -->
-
-<div class="cls"></div>
-
-<div class="bg-[#3CA6AC] h-[250px] sm:h-[400px] md:h-[600px] lg:h-[800px] xl:h-[1000px] w-full sm:w-[95%] md:w-[90%] lg:w-[1200px] xl:w-[1468px] mt-16 sm:mt-20 md:mt-24 lg:mt-28 xl:mt-32 mx-auto">
+   <!-- hero section  -->
+<div
+  class="sm:bg-[#3CA6AC] bg-[#FFFFFF]
+    h-[250px] sm:h-[400px] md:h-[600px] lg:h-[800px] xl:h-[1000px]
+    w-full sm:w-[95%] md:w-[90%] lg:w-[1200px] xl:w-[1468px]
+     sm:mt-20 md:mt-24 lg:mt-28 xl:mt-32 mt-0 pt-0
+    mx-auto
+    relative
+    overflow-visible"
+>
   <img
     src="img/group.png"
     alt=""
-    class="w-[130%] max-w-none relative -left-[15%] top-[8%] sm:top-[10%] md:top-[12%] lg:top-[14%] xl:top-[15%] h-auto"
+    class="
+      /* mobile */
+      w-full h-[100%] block mx-auto relative top-0 sm:top-[10%]
+
+      /* desktop */
+      md:absolute
+      md:w-[130%]
+      md:max-w-none
+      md:left-1/2
+      md:-translate-x-1/2
+      md:top-[12%]
+      sm:h-auto
+      lg:top-[14%]
+      xl:top-[15%]
+    "
   />
 </div>
 
+   <!-- info -->
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12">
+
+  <!-- Header (NOT h1 to avoid global CSS) -->
+  <div
+    class="text-center font-roboto font-medium
+           text-[20px] sm:text-[26px] md:text-[30px]
+           tracking-[1.5px] sm:tracking-[2.5px] md:tracking-[3.09px]
+           mb-6 sm:mb-10 md:mb-12 leading-snug"
+  >
+    SHOPS AND OFFICE SPACES
+  </div>
+
+  <!-- Info Bar -->
+  <div
+    class="flex flex-col sm:flex-row items-center justify-center
+           gap-3 sm:gap-4
+           px-2 sm:px-8 md:px-12
+           mb-8 sm:mb-16 md:mb-20"
+  >
+    <span class="font-roboto font-medium text-[16px] sm:text-[22px] md:text-[25px] tracking-[1.2px] sm:tracking-[2.5px] text-center">
+      STARTING AT 00 CR
+    </span>
+
+    <span class="hidden sm:inline text-gray-300">|</span>
+
+    <span class="font-roboto font-medium text-[16px] sm:text-[22px] md:text-[25px] tracking-[1.2px] sm:tracking-[2.5px] text-center">
+      AT HINJAWADI
+    </span>
+
+    <span class="hidden sm:inline text-gray-300">|</span>
+
+    <span class="font-roboto font-medium text-[16px] sm:text-[22px] md:text-[25px] tracking-[1.2px] sm:tracking-[2.5px] text-center">
+      POSSESSION: 0000
+    </span>
+  </div>
+
+  <!-- Content Section -->
+  <div class="flex flex-col lg:flex-row gap-8 sm:gap-10 md:gap-14 px-2 sm:px-8 md:px-12">
+
+    <!-- Left -->
+    <div class="w-full lg:flex-1 flex justify-center">
+      <div
+        class="font-roboto font-light text-[#707070]
+               text-[18px] sm:text-2xl md:text-3xl
+               leading-relaxed
+               max-w-sm text-center lg:text-left"
+      >
+        Lorem ipsum dolor sit amet, consectetuer
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="w-full lg:flex-1 flex justify-center lg:justify-start">
+      <p
+        class="font-roboto text-[#000]
+               text-[14px] sm:text-base
+               leading-[1.7]
+               tracking-[0.8px] sm:tracking-[2px]
+               max-w-md text-center lg:text-left"
+      >
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+      </p>
+    </div>
+
+  </div>
+</div>
 
 
+<!-- Mobile Slider - Hide on desktop -->
+<div class="cls"></div>
+<div class="kkey lg:hidden">
+  <ul class="bxsliderrr">
+    <li>
+      <img src="img/proj-1.png" alt="Aura Aiwa" />
+      <p>test</p>
+    </li>
+    <li>
+      <img src="img/proj-2.png" alt="Aura Kollective" />
+      <p>test 2</p>
+    </li>
+    <li>
+      <img src="img/proj-3.png" alt="Aura Vrisa" />
+      <p>test 3</p>
+    </li>
+  </ul>
+</div>
+
+<div class="cls"></div>
+
+<!-- Desktop Rotate Slider - Hide on mobile -->
+<div class="sliderBox hidden lg:block">
+  <div class="rotateslider-container md:mb-10" id="sliderC">
+    <div class="rotateslider-item">
+      <img src="img/proj-1.png" alt="Aura Aiwa" />
+      <p>test 1</p>
+    </div>
+    <div class="rotateslider-item">
+      <img src="img/proj-2.png" alt="Aura Kollective" />
+      <p>test 2</p>
+    </div>
+    <div class="rotateslider-item">
+      <img src="img/proj-3.png" alt="Aura Vrisa" />
+      <p>test 3</p>
+    </div>
+
+    <span class="arrow right js-rotateslider-arrow" data-action="next">
+      <img src="img/next.svg" />
+    </span>
+    <span class="arrow left js-rotateslider-arrow" data-action="prev">
+      <img src="img/back.svg" />
+    </span>
+  </div>
+</div>
+
+    <!-- AMENITIES – MOBILE ONLY -->
+<div class="lg:hidden py-4 px-3">
+  <h2 class="text-lg font-semibold text-center text-gray-700 mb-4 tracking-wide">
+    AMENITIES
+  </h2>
+  <div class="bg-gray-300 py-4 px-3 rounded-md">
+    <div class="grid grid-cols-2 gap-y-4 gap-x-3 place-items-center">
+      
+      <!-- Item -->
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-1.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Auto-door Lifts<br>with Backup</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-2.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Designer Entrance Gate</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-3.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Fire Fighting System</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-4.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Laundry Room</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-5.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Trimix Internal Road</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-6.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">CCTV Cameras</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-7.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Gen-set Backup</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-8.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Lobby & Waiting</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-9.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Sewage Treatment</p>
+      </div>
+      <div class="flex flex-col items-center text-center">
+        <img src="img/amenities-10.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Society Office</p>
+      </div>
+      <div class="flex flex-col items-center text-center col-span-2">
+        <img src="img/amenities-11.png" class="w-10 h-10 mb-1.5 object-contain" />
+        <p class="text-[9px] leading-tight">Designer Clubhouse</p>
+      </div>
+    </div>
+    <p class="text-[8px] text-gray-600 text-right mt-3">
+      Dummy Amenities
+    </p>
+  </div>
+</div>
+
+    
+
+ <!-- amenities dekstop only -->
+    <div class="py-8 px-4 hidden lg:block">
+        <h2 class="text-2xl font-semibold text-center text-gray-700 mb-8 tracking-wide">AMENITIES</h2>
+        
+        <div class="max-w-7xl mx-auto bg-gray-300 py-10 px-6">
+            <!-- First Row - 6 items -->
+            <div class="flex flex-wrap justify-center gap-x-12 gap-y-10 mb-8">
+                <!-- Auto-door Lifts -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-1.png" alt="Auto-door Lifts" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Auto-door Lifts<br>with<br>Gen-Set Backup</p>
+                </div>
+
+                <!-- Designer Entrance Gate -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-2.png" alt="Designer Entrance Gate" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Designer Entrance<br>Gate With Security<br>Cabin</p>
+                </div>
+
+                <!-- Fire Fighting System -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-3.png" alt="Fire Fighting System" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Fire<br>Fighting<br>System</p>
+                </div>
+
+                <!-- Laundry Room -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-4.png" alt="Laundry Room" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Laundry<br>Room</p>
+                </div>
+
+                <!-- Trimix Internal Road -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-5.png" alt="Trimix Internal Road" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Trimix<br>Internal<br>Road</p>
+                </div>
+
+                <!-- CCTV Cameras -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-6.png" alt="CCTV Cameras" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">CCTV Cameras<br>In Common<br>Areas</p>
+                </div>
+            </div>
+
+            <!-- Second Row - 5 items -->
+            <div class="flex flex-wrap justify-center gap-x-12 gap-y-10">
+                <!-- Gen-set Backup -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-7.png" alt="Gen-set Backup" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Gen-set Backup<br>For Common<br>Areas</p>
+                </div>
+
+                <!-- Lobby & Waiting Areas -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-8.png" alt="Lobby & Waiting Areas" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Lobby &<br>Waiting<br>Areas</p>
+                </div>
+
+                <!-- Sewage Treatment Plant -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-9.png" alt="Sewage Treatment Plant" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Sewage<br>Treatment<br>Plant</p>
+                </div>
+
+                <!-- Society Office -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-10.png" alt="Society Office" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Society<br>Office</p>
+                </div>
+
+                <!-- Designer Clubhouse -->
+                <div class="flex flex-col items-center text-center w-32">
+                    <div class="w-16 h-16 mb-3">
+                        <img src="img/amenities-11.png" alt="Designer Clubhouse" class="w-full h-full object-contain">
+                    </div>
+                    <p class="text-xs leading-relaxed text-gray-800">Designer<br>Clubhouse</p>
+                </div>
+            </div>
+
+            <!-- Dummy Amenities Text -->
+            <div class="text-right mt-6 pr-4">
+                <p class="text-xs text-gray-600">Dummy Amenities</p>
+            </div>
+        </div>
+    </div>
+<footer
+  class="bg-gray-200 py-8 md:py-12 lg:py-16 px-4 md:px-6 lg:px-16 mt-5"
+  style="display: block !important;"
+>
+  <div class="max-w-7xl mx-auto" style="display: block !important;">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16"
+      style="display: grid !important; align-items: start !important;"
+    >
+      <!-- Logo Section -->
+      <div 
+        class="flex justify-center sm:justify-start items-start"
+        style="align-self: start !important; display: flex !important;"
+      >
+        <img
+          src="img/logo.png"
+          alt="Unite Properties Logo"
+          class="w-32 sm:w-36 md:w-40 lg:w-48 h-auto object-contain"
+        />
+      </div>
+
+      <!-- Corporate Office Section -->
+      <div 
+        class="text-center sm:text-left"
+        style="align-self: start !important; display: block !important;"
+      >
+        <h3
+          class="font-medium text-[#2d2d2d] mb-3 md:mb-4 tracking-wider text-xs sm:text-sm md:text-base uppercase font-roboto"
+          style="margin-top: 0 !important; font-size: inherit !important;"
+        >
+          CORPORATE OFFICE
+        </h3>
+        <p
+          class="text-[#393939] leading-relaxed text-xs sm:text-sm md:text-base font-normal font-roboto"
+          style="font-size: inherit !important;"
+        >
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+        </p>
+      </div>
+
+      <!-- Contact Section -->
+      <div 
+        class="text-center sm:text-left font-roboto"
+        style="align-self: start !important; display: block !important;"
+      >
+        <p
+          class="font-medium text-[#2d2d2d] mb-1 md:mb-2 text-xs sm:text-sm md:text-base"
+          style="margin-top: 0 !important; font-size: inherit !important;"
+        >
+          +91 00000 00000
+        </p>
+        <p
+          class="text-[#393939] text-xs sm:text-sm md:text-base font-medium"
+          style="font-size: inherit !important;"
+        >
+          Lorem ipsum dolor sit a
+        </p>
+      </div>
+
+      <!-- Social Media Section -->
+      <div
+        class="flex justify-center sm:justify-start gap-3 md:gap-4 items-start"
+        style="align-self: start !important; display: flex !important;"
+      >
+        <img
+          src="img/facebook.png"
+          alt="Facebook"
+          class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
+        />
+        <img
+          src="img/youtube.png"
+          alt="YouTube"
+          class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
+        />
+        <img
+          src="img/insta.png"
+          alt="Instagram"
+          class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
+        />
+      </div>
+    </div>
+  </div>
+</footer>
     <!-- <script>
       // Pure JavaScript solution (no jQuery needed for this part)
       document.addEventListener("DOMContentLoaded", function () {
