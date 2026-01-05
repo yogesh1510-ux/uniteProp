@@ -4,195 +4,666 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Unite Prop</title>
-    <link rel="stylesheet" href="css/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/app.css" />
-    <link rel="stylesheet" href="css/jquery.bxslider.css" />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        corePlugins: { preflight: false },
-        theme: {
-          extend: {
-            fontFamily: {
-              roboto: ["Roboto", "sans-serif"],
-              matangi: ["Matangi", "serif"],
-              helvetica: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
-            },
-          },
-        },
-      };
-    </script>
-
     <style>
-      /* Remove all default borders and add only bottom border */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+      }
+
+      /* Header Styles */
+      .header {
+        display: flex;
+        background-color: #c1c0cd;
+        align-items: center;
+      }
+
+      .logo-container {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo {
+        width: 3.5rem;
+        margin-left: 1.75rem;
+      }
+
+      .nav-container {
+        display: flex;
+        padding: 2.25rem;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+      }
+
+      .nav-list {
+        display: none;
+        list-style: none;
+        background: white;
+        width: 100%;
+        padding: 1.5rem;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 50;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-list.active {
+        display: flex;
+      }
+
+      .nav-list li a {
+        text-decoration: none;
+        color: #585858;
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        font-weight: bold;
+      }
+
+      .nav-list li a:hover {
+        color: #374151;
+      }
+
+      .nav-btn {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        display: block;
+      }
+
+      .nav-btn svg {
+        width: 2.25rem;
+        height: 2.25rem;
+        color: #374151;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        background-color: #ffffff;
+        height: 250px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow: visible;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        top: 0;
+      }
+
+      /* Info Section */
+      .info-section {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 1.5rem 1rem;
+      }
+
+      .info-header {
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 1.5px;
+        margin-bottom: 1.5rem;
+        line-height: 1.375;
+      }
+
+      .info-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        padding: 0 0.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .info-bar span {
+        font-family: "Roboto", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 1.2px;
+        text-align: center;
+      }
+
+      .info-bar .separator {
+        display: none;
+        color: #d1d5db;
+      }
+
+      .content-section {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 0.5rem;
+      }
+
+      .content-left {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .content-left-text {
+        font-family: "Roboto", sans-serif;
+        font-weight: 300;
+        color: #707070;
+        font-size: 18px;
+        line-height: 1.625;
+        max-width: 32rem;
+        text-align: center;
+      }
+
+      .content-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .content-right-text {
+        font-family: "Roboto", sans-serif;
+        color: #000;
+        font-size: 14px;
+        line-height: 1.7;
+        letter-spacing: 0.8px;
+        max-width: 28rem;
+        text-align: center;
+      }
+
+      /* Amenities Mobile */
+      .amenities-mobile {
+        padding: 1rem 0.75rem;
+      }
+
+      .amenities-mobile h2 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-align: center;
+        color: #374151;
+        margin-bottom: 1rem;
+        letter-spacing: 0.025em;
+      }
+
+      .amenities-grid-container {
+        background-color: #d1d5db;
+        padding: 1rem 0.75rem;
+        border-radius: 0.375rem;
+      }
+
+      .amenities-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem 0.75rem;
+        place-items: center;
+      }
+
+      .amenity-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .amenity-item img {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-bottom: 0.375rem;
+        object-fit: contain;
+      }
+
+      .amenity-item p {
+        font-size: 9px;
+        line-height: 1.25;
+      }
+
+      .amenity-item.full-width {
+        grid-column: span 2;
+      }
+
+      .amenities-note {
+        font-size: 8px;
+        color: #4b5563;
+        text-align: right;
+        margin-top: 0.75rem;
+      }
+
+      /* Amenities Desktop */
+      .amenities-desktop {
+        padding: 2rem 1rem;
+        display: none;
+      }
+
+      .amenities-desktop h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+        color: #374151;
+        margin-bottom: 2rem;
+        letter-spacing: 0.025em;
+      }
+
+      .amenities-container {
+        max-width: 80rem;
+        margin: 0 auto;
+        background-color: #d1d5db;
+        padding: 2.5rem 1.5rem;
+      }
+
+      .amenities-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2.5rem 3rem;
+        margin-bottom: 2rem;
+      }
+
+      .amenities-row:last-of-type {
+        margin-bottom: 0;
+      }
+
+      .amenity-desktop-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 8rem;
+      }
+
+      .amenity-desktop-item .icon-wrapper {
+        width: 4rem;
+        height: 4rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .amenity-desktop-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .amenity-desktop-item p {
+        font-size: 0.75rem;
+        line-height: 1.625;
+        color: #1f2937;
+      }
+
+      .amenities-desktop-note {
+        text-align: right;
+        margin-top: 1.5rem;
+        padding-right: 1rem;
+      }
+
+      .amenities-desktop-note p {
+        font-size: 0.75rem;
+        color: #4b5563;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: #e5e7eb;
+        padding: 2rem 1rem;
+        margin-top: 1.25rem;
+      }
+
+      .footer-container {
+        max-width: 80rem;
+        margin: 0 auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .footer-logo {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .footer-logo img {
+        width: 8rem;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .footer-section {
+        text-align: center;
+      }
+
+      .footer-section h3 {
+        font-weight: 500;
+        color: #2d2d2d;
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.025em;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+      }
+
+      .footer-section p {
+        color: #393939;
+        line-height: 1.625;
+        font-size: 0.75rem;
+        font-weight: 400;
+      }
+
+      .footer-contact p:first-child {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+      }
+
+      .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        align-items: flex-start;
+      }
+
+      .footer-social img {
+        width: 2.5rem;
+        height: auto;
+      }
+
+      /* Input Styles */
       input[type="text"],
       input[type="tel"],
       input[type="email"],
       select {
-        border: none !important;
-        border-bottom: 2px solid white !important;
-        border-radius: 0 !important;
-        outline: none !important;
-        box-shadow: none !important;
+        border: none;
+        border-bottom: 2px solid white;
+        border-radius: 0;
+        outline: none;
+        box-shadow: none;
       }
 
-      /* Keep bottom border on focus */
       input[type="text"]:focus,
       input[type="tel"]:focus,
       input[type="email"]:focus,
       select:focus {
-        border: none !important;
-        border-bottom: 2px solid white !important;
-        outline: none !important;
-        box-shadow: none !important;
+        border: none;
+        border-bottom: 2px solid white;
+        outline: none;
+        box-shadow: none;
       }
 
-      /* Remove select dropdown arrow styling */
       select {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
         background-image: none;
       }
-    </style>
-    
 
-    <style>
-      .footerTablee a {
-        font-size: 16px;
-        color: #fff;
-        text-decoration: none;
-        display: inline-block;
-        line-height: 26px;
-        padding-left: 15px;
-        padding-right: 15px;
-      }
-      .footerTablee a:hover {
-        color: #fff;
-        text-decoration: underline;
+      /* Responsive Styles */
+      @media (min-width: 640px) {
+        .hero-section {
+          background-color: #3ca6ac;
+          height: 400px;
+          width: 95%;
+          margin: 5rem auto 0;
+        }
+
+        .hero-image {
+          top: 10%;
+        }
+
+        .info-header {
+          font-size: 26px;
+          letter-spacing: 2.5px;
+          margin-bottom: 2.5rem;
+        }
+
+        .info-bar {
+          flex-direction: row;
+          gap: 1rem;
+          padding: 0 2rem;
+          margin-bottom: 4rem;
+        }
+
+        .info-bar span {
+          font-size: 22px;
+          letter-spacing: 2.5px;
+        }
+
+        .info-bar .separator {
+          display: inline;
+        }
+
+        .content-section {
+          padding: 0 2rem;
+        }
+
+        .content-left-text {
+          font-size: 1.5rem;
+        }
+
+        .content-right-text {
+          font-size: 1rem;
+          letter-spacing: 2px;
+        }
+
+        .footer-section {
+          text-align: left;
+        }
+
+        .footer-section h3,
+        .footer-section p {
+          font-size: 0.875rem;
+        }
+
+        .footer-logo {
+          justify-content: flex-start;
+        }
+
+        .footer-logo img {
+          width: 9rem;
+        }
+
+        .footer-social {
+          justify-content: flex-start;
+        }
+
+        .footer-social img {
+          width: 2.75rem;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem;
+        }
       }
 
-      /* Smooth transition for mobile menu */
-      #navBar {
-        transition: all 0.3s ease-in-out;
-      }
-
-      /* Hide menu icon on desktop */
       @media (min-width: 768px) {
-        #navBtn {
+        .logo {
+          width: 7rem;
+        }
+
+        .nav-list {
+          display: flex;
+          flex-direction: row;
+          gap: 2.5rem;
+          position: static;
+          background: transparent;
+          box-shadow: none;
+          padding: 0;
+          width: auto;
+        }
+
+        .nav-btn {
           display: none;
+        }
+
+        .hero-section {
+          height: 600px;
+          width: 90%;
+          margin-top: 6rem;
+        }
+
+        .hero-image {
+          position: absolute;
+          width: 130%;
+          max-width: none;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 12%;
+          height: auto;
+        }
+
+        .info-section {
+          padding: 2rem 2rem;
+        }
+
+        .info-header {
+          font-size: 30px;
+          letter-spacing: 3.09px;
+          margin-bottom: 3rem;
+        }
+
+        .info-bar {
+          padding: 0 3rem;
+        }
+
+        .info-bar span {
+          font-size: 25px;
+        }
+
+        .content-section {
+          gap: 3.5rem;
+          padding: 0 3rem;
+        }
+
+        .content-left-text {
+          font-size: 1.875rem;
+        }
+
+        .footer-section h3,
+        .footer-section p {
+          font-size: 1rem;
+        }
+
+        .footer-logo img {
+          width: 10rem;
+        }
+
+        .footer-social img {
+          width: 3rem;
+        }
+
+        .footer {
+          padding: 3rem 1.5rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .hero-section {
+          height: 800px;
+          width: 1200px;
+          margin-top: 7rem;
+        }
+
+        .hero-image {
+          top: 14%;
+        }
+
+        .content-section {
+          flex-direction: row;
+        }
+
+        .content-left,
+        .content-right {
+          flex: 1;
+        }
+
+        .content-left-text {
+          text-align: left;
+        }
+
+        .content-right {
+          justify-content: flex-start;
+        }
+
+        .content-right-text {
+          text-align: left;
+        }
+
+        .amenities-mobile {
+          display: none;
+        }
+
+        .amenities-desktop {
+          display: block;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 4rem;
+        }
+
+        .footer {
+          padding: 4rem;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .hero-section {
+          height: 900px;
+          width: 1468px;
+          margin-top: 8rem;
+        }
+
+        .hero-image {
+          top: 15%;
+          padding-left: 7rem;
+          padding-right: 7rem;
         }
       }
     </style>
-    <style>
-  /* Nuclear option - force footer alignment */
-  footer.bg-gray-200 * {
-    font-size: inherit !important;
-  }
-  
-  footer.bg-gray-200 .grid {
-    display: grid !important;
-    align-items: start !important;
-  }
-  
-  footer.bg-gray-200 .grid > div {
-    align-self: start !important;
-    vertical-align: top !important;
-  }
-  
-  @media (min-width: 640px) {
-    footer.bg-gray-200 .sm\:text-left {
-      text-align: left !important;
-    }
-  }
-</style>
   </head>
-
   <body>
-    <!-- header  -->
-    <div class="flex bg-[#C1C0CD]">
-      <!-- this is logo and all  -->
-      <div class="p-4 flex justify-center items-center">
-        <img src="img/logo.png" alt="" class="w-14 md:w-28 ml-7" />
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-container">
+        <img src="img/logo.png" alt="Logo" class="logo" />
       </div>
 
-      <!-- this is for navigation -->
-      <div class="flex p-9 w-full justify-end items-center gap-4 relative">
-        <ul
-          id="navBar"
-          class="hidden md:flex md:gap-10 list-none md:items-center flex-col md:flex-row gap-4 absolute md:static right-0 top-full bg-white md:bg-transparent w-full md:w-auto p-6 md:p-0 z-50 shadow-lg md:shadow-none"
-        >
-          <li>
-            <a
-              href="index.html"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >HOME</a
-            >
-          </li>
-          <li>
-            <a
-              href="about.html"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >ABOUT US</a
-            >
-          </li>
-          <li>
-            <a
-              href="#project"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >PROJECTS</a
-            >
-          </li>
-          <li>
-            <a
-              href="#media"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >MEDIA</a
-            >
-          </li>
-          <li>
-            <a
-              href="#nri"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >NRI</a
-            >
-          </li>
-          <li>
-            <a
-              href="#careers"
-              class="no-underline text-[#585858] text-[1.1rem] tracking-wider font-bold hover:text-gray-700"
-              >CAREERS</a
-            >
-          </li>
-          <li>
-            <a
-              href="#contact"
-              class="no-underline text-[#585858] text-lg tracking-wider font-bold hover:text-gray-700"
-              >CONTACT US</a
-            >
-          </li>
+      <div class="nav-container">
+        <ul id="navBar" class="nav-list">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="about.html">ABOUT US</a></li>
+          <li><a href="#project">PROJECTS</a></li>
+          <li><a href="#media">MEDIA</a></li>
+          <li><a href="#nri">NRI</a></li>
+          <li><a href="#careers">CAREERS</a></li>
+          <li><a href="#contact">CONTACT US</a></li>
         </ul>
 
-        <button
-          id="navBtn"
-          class="md:hidden cursor-pointer bg-transparent border-none"
-        >
-          <svg
-            class="w-9 h-9 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
+        <button id="navBtn" class="nav-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -204,426 +675,223 @@
       </div>
     </div>
 
-   <!-- hero section  -->
-<div
-  class="sm:bg-[#3CA6AC] bg-[#FFFFFF]
-    h-[250px] sm:h-[400px] md:h-[600px] lg:h-[800px] xl:h-[1000px]
-    w-full sm:w-[95%] md:w-[90%] lg:w-[1200px] xl:w-[1468px]
-     sm:mt-20 md:mt-24 lg:mt-28 xl:mt-32 mt-0 pt-0
-    mx-auto
-    relative
-    overflow-visible"
->
-  <img
-    src="img/group.png"
-    alt=""
-    class="
-      /* mobile */
-      w-full h-[100%] block mx-auto relative top-0 sm:top-[10%]
-
-      /* desktop */
-      md:absolute
-      md:w-[130%]
-      md:max-w-none
-      md:left-1/2
-      md:-translate-x-1/2
-      md:top-[12%]
-      sm:h-auto
-      lg:top-[14%]
-      xl:top-[15%]
-    "
-  />
-</div>
-
-   <!-- info -->
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-12">
-
-  <!-- Header (NOT h1 to avoid global CSS) -->
-  <div
-    class="text-center font-roboto font-medium
-           text-[20px] sm:text-[26px] md:text-[30px]
-           tracking-[1.5px] sm:tracking-[2.5px] md:tracking-[3.09px]
-           mb-6 sm:mb-10 md:mb-12 leading-snug"
-  >
-    SHOPS AND OFFICE SPACES
-  </div>
-
-  <!-- Info Bar -->
-  <div
-    class="flex flex-col sm:flex-row items-center justify-center
-           gap-3 sm:gap-4
-           px-2 sm:px-8 md:px-12
-           mb-8 sm:mb-16 md:mb-20"
-  >
-    <span class="font-roboto font-medium text-[16px] sm:text-[22px] md:text-[25px] tracking-[1.2px] sm:tracking-[2.5px] text-center">
-      STARTING AT 00 CR
-    </span>
-
-    <span class="hidden sm:inline text-gray-300">|</span>
-
-    <span class="font-roboto font-medium text-[16px] sm:text-[22px] md:text-[25px] tracking-[1.2px] sm:tracking-[2.5px] text-center">
-      AT HINJAWADI
-    </span>
-
-    <span class="hidden sm:inline text-gray-300">|</span>
-
-    <span class="font-roboto font-medium text-[16px] sm:text-[22px] md:text-[25px] tracking-[1.2px] sm:tracking-[2.5px] text-center">
-      POSSESSION: 0000
-    </span>
-  </div>
-
-  <!-- Content Section -->
-  <div class="flex flex-col lg:flex-row gap-8 sm:gap-10 md:gap-14 px-2 sm:px-8 md:px-12">
-
-    <!-- Left -->
-    <div class="w-full lg:flex-1 flex justify-center">
-      <div
-        class="font-roboto font-light text-[#707070]
-               text-[18px] sm:text-2xl md:text-3xl
-               leading-relaxed
-               max-w-sm text-center lg:text-left"
-      >
-        Lorem ipsum dolor sit amet, consectetuer
-      </div>
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <img src="img/group.png" alt="Hero" class="hero-image" />
     </div>
 
-    <!-- Right -->
-    <div class="w-full lg:flex-1 flex justify-center lg:justify-start">
-      <p
-        class="font-roboto text-[#000]
-               text-[14px] sm:text-base
-               leading-[1.7]
-               tracking-[0.8px] sm:tracking-[2px]
-               max-w-md text-center lg:text-left"
-      >
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-        nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
-      </p>
-    </div>
+    <!-- Info Section -->
+    <div class="info-section">
+      <div class="info-header">SHOPS AND OFFICE SPACES</div>
 
-  </div>
-</div>
-
-
-<!-- Mobile Slider - Hide on desktop -->
-<div class="cls"></div>
-<div class="kkey lg:hidden">
-  <ul class="bxsliderrr">
-    <li>
-      <img src="img/proj-1.png" alt="Aura Aiwa" />
-      <p>test</p>
-    </li>
-    <li>
-      <img src="img/proj-2.png" alt="Aura Kollective" />
-      <p>test 2</p>
-    </li>
-    <li>
-      <img src="img/proj-3.png" alt="Aura Vrisa" />
-      <p>test 3</p>
-    </li>
-  </ul>
-</div>
-
-<div class="cls"></div>
-
-<!-- Desktop Rotate Slider - Hide on mobile -->
-<div class="sliderBox hidden lg:block">
-  <div class="rotateslider-container md:mb-10" id="sliderC">
-    <div class="rotateslider-item">
-      <img src="img/proj-1.png" alt="Aura Aiwa" />
-      <p>test 1</p>
-    </div>
-    <div class="rotateslider-item">
-      <img src="img/proj-2.png" alt="Aura Kollective" />
-      <p>test 2</p>
-    </div>
-    <div class="rotateslider-item">
-      <img src="img/proj-3.png" alt="Aura Vrisa" />
-      <p>test 3</p>
-    </div>
-
-    <span class="arrow right js-rotateslider-arrow" data-action="next">
-      <img src="img/next.svg" />
-    </span>
-    <span class="arrow left js-rotateslider-arrow" data-action="prev">
-      <img src="img/back.svg" />
-    </span>
-  </div>
-</div>
-
-    <!-- AMENITIES – MOBILE ONLY -->
-<div class="lg:hidden py-4 px-3">
-  <h2 class="text-lg font-semibold text-center text-gray-700 mb-4 tracking-wide">
-    AMENITIES
-  </h2>
-  <div class="bg-gray-300 py-4 px-3 rounded-md">
-    <div class="grid grid-cols-2 gap-y-4 gap-x-3 place-items-center">
-      
-      <!-- Item -->
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-1.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Auto-door Lifts<br>with Backup</p>
+      <div class="info-bar">
+        <span>STARTING AT 00 CR</span>
+        <span class="separator">|</span>
+        <span>AT HINJAWADI</span>
+        <span class="separator">|</span>
+        <span>POSSESSION: 0000</span>
       </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-2.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Designer Entrance Gate</p>
-      </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-3.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Fire Fighting System</p>
-      </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-4.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Laundry Room</p>
-      </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-5.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Trimix Internal Road</p>
-      </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-6.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">CCTV Cameras</p>
-      </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-7.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Gen-set Backup</p>
-      </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-8.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Lobby & Waiting</p>
-      </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-9.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Sewage Treatment</p>
-      </div>
-      <div class="flex flex-col items-center text-center">
-        <img src="img/amenities-10.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Society Office</p>
-      </div>
-      <div class="flex flex-col items-center text-center col-span-2">
-        <img src="img/amenities-11.png" class="w-10 h-10 mb-1.5 object-contain" />
-        <p class="text-[9px] leading-tight">Designer Clubhouse</p>
-      </div>
-    </div>
-    <p class="text-[8px] text-gray-600 text-right mt-3">
-      Dummy Amenities
-    </p>
-  </div>
-</div>
 
-    
-
- <!-- amenities dekstop only -->
-    <div class="py-8 px-4 hidden lg:block">
-        <h2 class="text-2xl font-semibold text-center text-gray-700 mb-8 tracking-wide">AMENITIES</h2>
-        
-        <div class="max-w-7xl mx-auto bg-gray-300 py-10 px-6">
-            <!-- First Row - 6 items -->
-            <div class="flex flex-wrap justify-center gap-x-12 gap-y-10 mb-8">
-                <!-- Auto-door Lifts -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-1.png" alt="Auto-door Lifts" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Auto-door Lifts<br>with<br>Gen-Set Backup</p>
-                </div>
-
-                <!-- Designer Entrance Gate -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-2.png" alt="Designer Entrance Gate" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Designer Entrance<br>Gate With Security<br>Cabin</p>
-                </div>
-
-                <!-- Fire Fighting System -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-3.png" alt="Fire Fighting System" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Fire<br>Fighting<br>System</p>
-                </div>
-
-                <!-- Laundry Room -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-4.png" alt="Laundry Room" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Laundry<br>Room</p>
-                </div>
-
-                <!-- Trimix Internal Road -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-5.png" alt="Trimix Internal Road" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Trimix<br>Internal<br>Road</p>
-                </div>
-
-                <!-- CCTV Cameras -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-6.png" alt="CCTV Cameras" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">CCTV Cameras<br>In Common<br>Areas</p>
-                </div>
-            </div>
-
-            <!-- Second Row - 5 items -->
-            <div class="flex flex-wrap justify-center gap-x-12 gap-y-10">
-                <!-- Gen-set Backup -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-7.png" alt="Gen-set Backup" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Gen-set Backup<br>For Common<br>Areas</p>
-                </div>
-
-                <!-- Lobby & Waiting Areas -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-8.png" alt="Lobby & Waiting Areas" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Lobby &<br>Waiting<br>Areas</p>
-                </div>
-
-                <!-- Sewage Treatment Plant -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-9.png" alt="Sewage Treatment Plant" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Sewage<br>Treatment<br>Plant</p>
-                </div>
-
-                <!-- Society Office -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-10.png" alt="Society Office" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Society<br>Office</p>
-                </div>
-
-                <!-- Designer Clubhouse -->
-                <div class="flex flex-col items-center text-center w-32">
-                    <div class="w-16 h-16 mb-3">
-                        <img src="img/amenities-11.png" alt="Designer Clubhouse" class="w-full h-full object-contain">
-                    </div>
-                    <p class="text-xs leading-relaxed text-gray-800">Designer<br>Clubhouse</p>
-                </div>
-            </div>
-
-            <!-- Dummy Amenities Text -->
-            <div class="text-right mt-6 pr-4">
-                <p class="text-xs text-gray-600">Dummy Amenities</p>
-            </div>
+      <div class="content-section">
+        <div class="content-left">
+          <div class="content-left-text">
+            Lorem ipsum dolor sit amet, consectetuer
+          </div>
         </div>
-    </div>
-<footer
-  class="bg-gray-200 py-8 md:py-12 lg:py-16 px-4 md:px-6 lg:px-16 mt-5"
-  style="display: block !important;"
->
-  <div class="max-w-7xl mx-auto" style="display: block !important;">
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-16"
-      style="display: grid !important; align-items: start !important;"
-    >
-      <!-- Logo Section -->
-      <div 
-        class="flex justify-center sm:justify-start items-start"
-        style="align-self: start !important; display: flex !important;"
-      >
-        <img
-          src="img/logo.png"
-          alt="Unite Properties Logo"
-          class="w-32 sm:w-36 md:w-40 lg:w-48 h-auto object-contain"
-        />
-      </div>
 
-      <!-- Corporate Office Section -->
-      <div 
-        class="text-center sm:text-left"
-        style="align-self: start !important; display: block !important;"
-      >
-        <h3
-          class="font-medium text-[#2d2d2d] mb-3 md:mb-4 tracking-wider text-xs sm:text-sm md:text-base uppercase font-roboto"
-          style="margin-top: 0 !important; font-size: inherit !important;"
-        >
-          CORPORATE OFFICE
-        </h3>
-        <p
-          class="text-[#393939] leading-relaxed text-xs sm:text-sm md:text-base font-normal font-roboto"
-          style="font-size: inherit !important;"
-        >
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-        </p>
-      </div>
-
-      <!-- Contact Section -->
-      <div 
-        class="text-center sm:text-left font-roboto"
-        style="align-self: start !important; display: block !important;"
-      >
-        <p
-          class="font-medium text-[#2d2d2d] mb-1 md:mb-2 text-xs sm:text-sm md:text-base"
-          style="margin-top: 0 !important; font-size: inherit !important;"
-        >
-          +91 00000 00000
-        </p>
-        <p
-          class="text-[#393939] text-xs sm:text-sm md:text-base font-medium"
-          style="font-size: inherit !important;"
-        >
-          Lorem ipsum dolor sit a
-        </p>
-      </div>
-
-      <!-- Social Media Section -->
-      <div
-        class="flex justify-center sm:justify-start gap-3 md:gap-4 items-start"
-        style="align-self: start !important; display: flex !important;"
-      >
-        <img
-          src="img/facebook.png"
-          alt="Facebook"
-          class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
-        />
-        <img
-          src="img/youtube.png"
-          alt="YouTube"
-          class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
-        />
-        <img
-          src="img/insta.png"
-          alt="Instagram"
-          class="w-10 sm:w-11 md:w-12 lg:w-14 h-auto"
-        />
+        <div class="content-right">
+          <p class="content-right-text">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-    <!-- <script>
-      // Pure JavaScript solution (no jQuery needed for this part)
+
+    <!-- Amenities Mobile -->
+    <div class="amenities-mobile">
+      <h2>AMENITIES</h2>
+      <div class="amenities-grid-container">
+        <div class="amenities-grid">
+          <div class="amenity-item">
+            <img src="img/amenities-1.png" alt="Auto-door Lifts" />
+            <p>Auto-door Lifts<br />with Backup</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-2.png" alt="Designer Entrance Gate" />
+            <p>Designer Entrance Gate</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-3.png" alt="Fire Fighting System" />
+            <p>Fire Fighting System</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-4.png" alt="Laundry Room" />
+            <p>Laundry Room</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-5.png" alt="Trimix Internal Road" />
+            <p>Trimix Internal Road</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-6.png" alt="CCTV Cameras" />
+            <p>CCTV Cameras</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-7.png" alt="Gen-set Backup" />
+            <p>Gen-set Backup</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-8.png" alt="Lobby & Waiting" />
+            <p>Lobby & Waiting</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-9.png" alt="Sewage Treatment" />
+            <p>Sewage Treatment</p>
+          </div>
+          <div class="amenity-item">
+            <img src="img/amenities-10.png" alt="Society Office" />
+            <p>Society Office</p>
+          </div>
+          <div class="amenity-item full-width">
+            <img src="img/amenities-11.png" alt="Designer Clubhouse" />
+            <p>Designer Clubhouse</p>
+          </div>
+        </div>
+        <p class="amenities-note">Dummy Amenities</p>
+      </div>
+    </div>
+
+    <!-- Amenities Desktop -->
+    <div class="amenities-desktop">
+      <h2>AMENITIES</h2>
+      <div class="amenities-container">
+        <div class="amenities-row">
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-1.png" alt="Auto-door Lifts" />
+            </div>
+            <p>Auto-door Lifts<br />with<br />Gen-Set Backup</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-2.png" alt="Designer Entrance Gate" />
+            </div>
+            <p>Designer Entrance<br />Gate With Security<br />Cabin</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-3.png" alt="Fire Fighting System" />
+            </div>
+            <p>Fire<br />Fighting<br />System</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-4.png" alt="Laundry Room" />
+            </div>
+            <p>Laundry<br />Room</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-5.png" alt="Trimix Internal Road" />
+            </div>
+            <p>Trimix<br />Internal<br />Road</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-6.png" alt="CCTV Cameras" />
+            </div>
+            <p>CCTV Cameras<br />In Common<br />Areas</p>
+          </div>
+        </div>
+
+        <div class="amenities-row">
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-7.png" alt="Gen-set Backup" />
+            </div>
+            <p>Gen-set Backup<br />For Common<br />Areas</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-8.png" alt="Lobby & Waiting Areas" />
+            </div>
+            <p>Lobby &<br />Waiting<br />Areas</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-9.png" alt="Sewage Treatment Plant" />
+            </div>
+            <p>Sewage<br />Treatment<br />Plant</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-10.png" alt="Society Office" />
+            </div>
+            <p>Society<br />Office</p>
+          </div>
+          <div class="amenity-desktop-item">
+            <div class="icon-wrapper">
+              <img src="img/amenities-11.png" alt="Designer Clubhouse" />
+            </div>
+            <p>Designer<br />Clubhouse</p>
+          </div>
+        </div>
+
+        <div class="amenities-desktop-note">
+          <p>Dummy Amenities</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-logo">
+            <img src="img/logo.png" alt="Unite Properties Logo" />
+          </div>
+
+          <div class="footer-section">
+            <h3>CORPORATE OFFICE</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+            </p>
+          </div>
+
+          <div class="footer-section footer-contact">
+            <p>+91 00000 00000</p>
+            <p>Lorem ipsum dolor sit a</p>
+          </div>
+
+          <div class="footer-social">
+            <img src="img/facebook.png" alt="Facebook" />
+            <img src="img/youtube.png" alt="YouTube" />
+            <img src="img/insta.png" alt="Instagram" />
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
         const navBtn = document.getElementById("navBtn");
         const navBar = document.getElementById("navBar");
 
         navBtn.addEventListener("click", function () {
-          navBar.classList.toggle("hidden");
+          navBar.classList.toggle("active");
         });
 
-        // Close menu when clicking on a link (mobile)
         const navLinks = navBar.querySelectorAll("a");
         navLinks.forEach((link) => {
           link.addEventListener("click", function () {
             if (window.innerWidth < 768) {
-              navBar.classList.add("hidden");
+              navBar.classList.remove("active");
             }
           });
         });
 
-        // Close menu when clicking outside
         document.addEventListener("click", function (event) {
           const isClickInsideNav = navBar.contains(event.target);
           const isClickOnButton = navBtn.contains(event.target);
@@ -631,89 +899,14 @@
           if (
             !isClickInsideNav &&
             !isClickOnButton &&
-            !navBar.classList.contains("hidden")
+            navBar.classList.contains("active")
           ) {
             if (window.innerWidth < 768) {
-              navBar.classList.add("hidden");
+              navBar.classList.remove("active");
             }
           }
         });
       });
-    </script> -->
-   
     </script>
   </body>
-
-  <script src="js/jquery-3.1.1.min.js"></script>
-  <script src="./js/jquery.rotateSlider.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/jquery.bxslider.js"></script>
-
-  <script>
-    $(document).ready(function () {
-      $(".bxslider").bxSlider({
-        mode: "horizontal",
-        moveSlides: 0,
-        slideMargin: 0,
-        infiniteLoop: true,
-        minSlides: 1,
-        maxSlides: 1,
-        speed: 800,
-      });
-      $(".bxsliderrr").bxSlider({
-        mode: "horizontal",
-        moveSlides: 1,
-        slideMargin: 0,
-        infiniteLoop: true,
-        minSlides: 1,
-        maxSlides: 1,
-        speed: 800,
-      });
-      $(".bxsliderMobile").bxSlider({
-        mode: "horizontal",
-        moveSlides: 1,
-        slideMargin: 0,
-        infiniteLoop: true,
-        minSlides: 1,
-        maxSlides: 1,
-        speed: 800,
-      });
-      $(".mobileMenus").click(function () {
-        $(".headerRight").toggle("slow");
-      });
-
-      $(".closeBtn").click(function () {
-        $(".topForm").toggle("slow");
-      });
-
-      $(".closeBtnn").click(function () {
-        $(".topFormm").toggle("slow");
-      });
-
-      $(".enquireNow").click(function () {
-        $(".topForm").toggle("slow");
-      });
-
-      $(".eenquireNow").click(function () {
-        $(".topFormm").toggle("slow");
-      });
-
-      $(".enquireNoww").click(function () {
-        $(".topForm").toggle("slow");
-      });
-
-      $("#fplans").click(function () {
-        $(".topFormmm").toggle("slow");
-      });
-
-      $(".closeBtnnn").click(function () {
-        $(".topFormmm").toggle("slow");
-      });
-
-      $(".mobileMenuss").click(function () {
-        $(".navul").toggle(0);
-        $(".enquireNow").toggle(0);
-      });
-    });
-  </script>
 </html>
