@@ -3,268 +3,312 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- style  -->
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/app.css" />
-    <link rel="stylesheet" href="./css/jquery.bxslider.css" />
-
-    <!-- jQuery -->
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        corePlugins: { preflight: false },
-      };
-    </script>
-    <!-- 
-    <script>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod
-            ? n.callMethod.apply(n, arguments)
-            : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = "2.0";
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(
-        window,
-        document,
-        "script",
-        "https://connect.facebook.net/en_US/fbevents.js"
-      );
-      fbq("init", "1198497087697588");
-      fbq("track", "PageView");
-    </script>
-    <noscript
-      ><img
-        height="1"
-        width="1"
-        style="display: none"
-        src="https://www.facebook.com/tr?id=1198497087697588&ev=PageView&noscript=1"
-    /></noscript> -->
-    <!-- End Meta Pixel Code -->
-
+    <title>Gallery Carousel</title>
     <style>
-      .footerTablee a {
-        font-size: 16px;
-        color: #fff;
-        text-decoration: none;
-        display: inline-block;
-        line-height: 26px;
-        padding-left: 15px;
-        padding-right: 15px;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      .footerTablee a:hover {
-        color: #fff;
-        text-decoration: underline;
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        padding: 20px;
+      }
+
+      .gallery-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #666;
+        font-weight: bold;
+        margin-bottom: 40px;
+        letter-spacing: 0.3em;
+      }
+
+      .carousel-container {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      /* Side preview images */
+      .side-preview {
+        width: 200px;
+        height: 400px;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background-size: cover;
+        background-position: center;
+        filter: blur(8px);
+        opacity: 0.6;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .side-preview:hover {
+        filter: blur(6px);
+        opacity: 0.8;
+      }
+
+      /* Main carousel wrapper */
+      .carousel-wrapper {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Carousel track */
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        height: 500px;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+        background-position: center;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .carousel-slide img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      /* Navigation arrows */
+      .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #3ca6ac;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .arrow:hover {
+        background: #3ca6ac;
+        color: white;
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .arrow-left {
+        left: -80px;
+      }
+
+      .arrow-right {
+        right: -80px;
+      }
+
+      /* Dots indicator */
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #ccc;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .dot.active {
+        background-color: #666;
+      }
+
+      /* Responsive design */
+      @media (max-width: 1024px) {
+        .side-preview {
+          width: 150px;
+          height: 300px;
+        }
+
+        .carousel-slide {
+          height: 400px;
+        }
+
+        .arrow-left {
+          left: -60px;
+        }
+
+        .arrow-right {
+          right: -60px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .side-preview {
+          display: none;
+        }
+
+        .arrow {
+          width: 50px;
+          height: 50px;
+          font-size: 2rem;
+        }
+
+        .arrow-left {
+          left: 10px;
+        }
+
+        .arrow-right {
+          right: 10px;
+        }
+
+        .carousel-slide {
+          height: 300px;
+        }
+
+        .gallery-title {
+          font-size: 1.8rem;
+          margin-bottom: 30px;
+        }
       }
     </style>
   </head>
-
   <body>
-    <div class="mb-56">tes</div>
-    <div class="header">
-      <div class="headerLeft">
-        <!-- <img src="images/join-logo.svg" class="joinWater" alt="Aura Waters"> -->
-        <img
-          src="images/aura-waters-logo-3.png"
-          class="auraWatersLogo !w-[60%] h-[100%]"
-          alt="Aura Waters"
-          id="auraLogo2"
-        />
+    <h1 class="gallery-title">GALLERY</h1>
 
-        <!-- show on full screen  -->
-        <img
-          id="auraLogo"
-          src="images/aura-waters-logo-3.png"
-          alt="Aura Waters"
-          class="!w-[180%]"
-        />
+    <div class="carousel-container">
+      <!-- Left arrow -->
+      <button class="arrow arrow-left" onclick="moveSlide(-1)">‹</button>
 
-        <!-- <img src="images/ranawat-group-logo.svg" class="ranawattGroupLogo" alt="Ranawat Group " /> -->
-      </div>
-      <div class="headerRight">
-        <ul class="navul">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#location">Location</a></li>
-          <li>
-            <a
-              href="https://wa.me/918095807300?text=Hi, I'm interested in Aura Waters"
-              >Contact us</a
-            >
-          </li>
-        </ul>
-        <!--<a href="tel:+918095807300" class="call">809 580 7300</a>-->
-        <a href="#enquireNoww" class="enquireNow">Enquire Now</a>
-        <img
-          src="images/mobilemenu.svg"
-          class="mobileMenuss"
-          alt="Aura Waters"
-        />
-      </div>
-      <img src="images/mobilemenu.svg" class="mobileMenus" alt="Aura Waters" />
-    </div>
-    <!-- Mobile Slider for SliderC -->
-    <div class="kkey">
-      <ul class="bxsliderrr">
-        <li>
-          <img src="images/aura-aiwa-thumb.webp" alt="Aura Aiwa" />
-          <p>Aura Aiwa - NIBM Road</p>
-        </li>
-        <li>
-          <img src="images/aura-kollective-thumb.webp" alt="Aura Kollective" />
-          <p>Aura Kollective - Lullanagar</p>
-        </li>
-        <li>
-          <img src="images/aura-vrisa-thumb.jpg" alt="Aura Vrisa" />
-          <p>Aura Vrisa - Katraj Kondhwa Road</p>
-        </li>
-        <li>
-          <img src="images/aura-divine-thumb.jpg" alt="Aura Divine" />
-          <p>Aura Divine - Salisbury Park</p>
-        </li>
-        <li>
-          <img src="images/aura-bliss-thumb.jpg" alt="Aura Bliss" />
-          <p>Aura Bliss - Yewalewadi</p>
-        </li>
-        <li>
-          <img src="images/ahq-thumb.jpg" alt="AHQ" />
-          <p>AHQ - Shankar Sheth Road</p>
-        </li>
-        <li>
-          <img src="images/apex-project-1.jpg" alt="RG Apex" />
-          <p>RG Apex - BT Kawade Road</p>
-        </li>
-      </ul>
-    </div>
-    <!-- Desktop Rotate Slider for SliderC -->
-    <div class="sliderBox">
-      <div class="rotateslider-container md:mb-10" id="sliderC">
-        <div class="rotateslider-item">
-          <img src="images/aura-aiwa-thumb.webp" alt="Aura Aiwa" />
-          <p>Aura Aiwa - NIBM Road</p>
-        </div>
-        <div class="rotateslider-item">
-          <img src="images/aura-kollective-thumb.webp" alt="Aura Kollective" />
-          <p>Aura Kollective - Lullanagar</p>
-        </div>
-        <div class="rotateslider-item">
-          <img src="images/aura-vrisa-thumb.jpg" alt="Aura Vrisa" />
-          <p>Aura Vrisa - Katraj Kondhwa Road</p>
-        </div>
-        <div class="rotateslider-item">
-          <img src="images/aura-divine-thumb.jpg" alt="Aura Divine" />
-          <p>Aura Divine - Salisbury Park</p>
-        </div>
-        <div class="rotateslider-item">
-          <img src="images/aura-bliss-thumb.jpg" alt="Aura Bliss" />
-          <p>Aura Bliss - Yewalewadi</p>
-        </div>
-        <div class="rotateslider-item">
-          <img src="images/ahq-thumb.jpg" alt="AHQ" />
-          <p>AHQ - Shankar Sheth Road</p>
-        </div>
-        <div class="rotateslider-item">
-          <img src="images/apex-project-1.jpg" alt="RG Apex" />
-          <p>RG Apex - BT Kawade Road</p>
-        </div>
+      <!-- Left preview -->
+      <div class="side-preview" id="leftPreview" onclick="moveSlide(-1)"></div>
 
-        <span class="arrow right js-rotateslider-arrow" data-action="next">
-          <img src="images/next.svg" />
-        </span>
-        <span class="arrow left js-rotateslider-arrow" data-action="prev">
-          <img src="images/back.svg" />
-        </span>
+      <!-- Main carousel -->
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Slides will be populated by JavaScript -->
+        </div>
       </div>
+
+      <!-- Right preview -->
+      <div class="side-preview" id="rightPreview" onclick="moveSlide(1)"></div>
+
+      <!-- Right arrow -->
+      <button class="arrow arrow-right" onclick="moveSlide(1)">›</button>
     </div>
+
+    <!-- Dots indicator -->
+    <div class="carousel-dots" id="carouselDots"></div>
+
+    <script>
+      // Sample images - replace with your own from img folder
+      const images = [
+        "img/proj-1.png",
+        "img/proj-2.png",
+        "img/proj-3.png",
+        "img/proj-4.png",
+      ];
+
+      let currentSlide = 0;
+      const track = document.getElementById("carouselTrack");
+      const dotsContainer = document.getElementById("carouselDots");
+      const leftPreview = document.getElementById("leftPreview");
+      const rightPreview = document.getElementById("rightPreview");
+
+      // Create slides
+      images.forEach((img, index) => {
+        const slide = document.createElement("div");
+        slide.className = "carousel-slide";
+        slide.style.backgroundImage = `url(${img})`;
+        track.appendChild(slide);
+
+        // Create dot
+        const dot = document.createElement("div");
+        dot.className = "dot";
+        if (index === 0) dot.classList.add("active");
+        dot.onclick = () => goToSlide(index);
+        dotsContainer.appendChild(dot);
+      });
+
+      function updateCarousel() {
+        // Move track
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        // Update dots
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentSlide);
+        });
+
+        // Update side previews
+        const prevIndex = (currentSlide - 1 + images.length) % images.length;
+        const nextIndex = (currentSlide + 1) % images.length;
+
+        leftPreview.style.backgroundImage = `url(${images[prevIndex]})`;
+        rightPreview.style.backgroundImage = `url(${images[nextIndex]})`;
+      }
+
+      function moveSlide(direction) {
+        currentSlide =
+          (currentSlide + direction + images.length) % images.length;
+        updateCarousel();
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateCarousel();
+      }
+
+      // Auto-play (optional)
+      // setInterval(() => moveSlide(1), 5000);
+
+      // Initialize
+      updateCarousel();
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") moveSlide(-1);
+        if (e.key === "ArrowRight") moveSlide(1);
+      });
+
+      // Touch/swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      track.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      track.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        if (touchEndX < touchStartX - 50) moveSlide(1);
+        if (touchEndX > touchStartX + 50) moveSlide(-1);
+      }
+    </script>
   </body>
-  <!-- 
-  <script src="js/jquery-3.1.1.min.js"></script>
-  <script src="./js/jquery.rotateSlider.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/jquery.bxslider.js"></script> -->
-
-  <script src="js/jquery-3.1.1.min.js"></script>
-  <script src="./js/jquery.rotateSlider.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/jquery.bxslider.js"></script>
-
-  <script>
-    $(document).ready(function () {
-      $(".bxslider").bxSlider({
-        mode: "horizontal",
-        moveSlides: 0,
-        slideMargin: 0,
-        infiniteLoop: true,
-        minSlides: 1,
-        maxSlides: 1,
-        speed: 800,
-      });
-      $(".bxsliderrr").bxSlider({
-        mode: "horizontal",
-        moveSlides: 1,
-        slideMargin: 0,
-        infiniteLoop: true,
-        minSlides: 1,
-        maxSlides: 1,
-        speed: 800,
-      });
-      $(".bxsliderMobile").bxSlider({
-        mode: "horizontal",
-        moveSlides: 1,
-        slideMargin: 0,
-        infiniteLoop: true,
-        minSlides: 1,
-        maxSlides: 1,
-        speed: 800,
-      });
-      $(".mobileMenus").click(function () {
-        $(".headerRight").toggle("slow");
-      });
-
-      $(".closeBtn").click(function () {
-        $(".topForm").toggle("slow");
-      });
-
-      $(".closeBtnn").click(function () {
-        $(".topFormm").toggle("slow");
-      });
-
-      $(".enquireNow").click(function () {
-        $(".topForm").toggle("slow");
-      });
-
-      $(".eenquireNow").click(function () {
-        $(".topFormm").toggle("slow");
-      });
-
-      $(".enquireNoww").click(function () {
-        $(".topForm").toggle("slow");
-      });
-
-      $("#fplans").click(function () {
-        $(".topFormmm").toggle("slow");
-      });
-
-      $(".closeBtnnn").click(function () {
-        $(".topFormmm").toggle("slow");
-      });
-
-      $(".mobileMenuss").click(function () {
-        $(".navul").toggle(0);
-        $(".enquireNow").toggle(0);
-      });
-    });
-  </script>
 </html>
