@@ -318,6 +318,56 @@
         padding-right: 1rem;
       }
 
+      /* Map Section */
+      .map-container {
+        width: 100%;
+        padding: 2rem 1rem;
+        background: linear-gradient(to bottom, #ffffff 0%, #f9fafb 100%);
+        margin-top: 3rem;
+      }
+
+      .map-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .location-icon {
+        width: 12rem;
+        height: auto;
+        /* animation: bounce 2s infinite; */
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .map-image-wrapper {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+        position: relative;
+      }
+
+      .location-map {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .location-map:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+      }
+
       .amenities-desktop-note p {
         font-size: 0.75rem;
         color: #4b5563;
@@ -467,6 +517,18 @@
           letter-spacing: 2px;
         }
 
+        .map-container {
+          padding: 3rem 2rem;
+        }
+
+        .location-icon {
+          width: 4rem;
+        }
+
+        .map-image-wrapper {
+          padding: 0 2rem;
+        }
+
         .footer-section {
           text-align: left;
         }
@@ -561,6 +623,23 @@
           font-size: 1.875rem;
         }
 
+        .map-container {
+          padding: 4rem 2rem;
+          margin-top: 4rem;
+        }
+
+        .location-icon {
+          width: 10rem;
+        }
+
+        .map-image-wrapper {
+          padding: 0 3rem;
+        }
+
+        .location-map {
+          border-radius: 16px;
+        }
+
         .footer-section h3,
         .footer-section p {
           font-size: 1rem;
@@ -619,6 +698,23 @@
           display: block;
         }
 
+        .map-container {
+          padding: 5rem 3rem;
+          margin-top: 5rem;
+        }
+
+        .location-icon {
+          width: 15rem;
+        }
+
+        .map-image-wrapper {
+          max-width: 1400px;
+        }
+
+        .location-map {
+          border-radius: 20px;
+        }
+
         .footer-grid {
           grid-template-columns: repeat(4, 1fr);
           gap: 4rem;
@@ -641,6 +737,13 @@
           padding-left: 7rem;
           padding-right: 7rem;
         }
+        .map-container {
+          padding: 6rem 4rem;
+        }
+
+        .map-image-wrapper {
+          max-width: 1600px;
+        }
       }
     </style>
     <style>
@@ -653,7 +756,6 @@
       body {
         font-family: Arial, sans-serif;
         background-color: #f5f5f5;
-        padding: 20px;
       }
 
       .gallery-title {
@@ -1059,6 +1161,20 @@
         </div>
       </div>
     </div>
+
+    <!-- map -->
+    <!-- <div class="map-container">
+      <div class="map-header">
+        <img src="images/location.png" alt="Location" class="location-icon" />
+      </div>
+      <div class="map-image-wrapper">
+        <img
+          src="images/locationmap.png"
+          alt="Location Map"
+          class="location-map"
+        />
+      </div>
+    </div> -->
 
     <!-- Footer -->
     <footer class="footer">
