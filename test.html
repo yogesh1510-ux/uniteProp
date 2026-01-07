@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gallery Carousel</title>
+    <title>About Pune Scaffolding</title>
     <style>
       * {
         margin: 0;
@@ -12,303 +12,249 @@
       }
 
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        padding: 20px;
+        font-family: "Arial", "Helvetica", sans-serif;
+        background-color: #000;
+        color: #fff;
       }
 
-      .gallery-title {
-        text-align: center;
-        font-size: 2.5rem;
-        color: #666;
-        font-weight: bold;
-        margin-bottom: 40px;
-        letter-spacing: 0.3em;
-      }
-
-      .carousel-container {
-        position: relative;
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-      }
-
-      /* Side preview images */
-      .side-preview {
-        width: 200px;
-        height: 400px;
-        flex-shrink: 0;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background-size: cover;
-        background-position: center;
-        filter: blur(8px);
-        opacity: 0.6;
-        border-radius: 12px;
+      .about-banner {
+        width: 100%;
         overflow: hidden;
       }
 
-      .side-preview:hover {
-        filter: blur(6px);
+      /* First Section - About The Company */
+      .section-one {
+        position: relative;
+        min-height: 100vh;
+        background: linear-gradient(to bottom, #fff 50%, #000 50%);
+        padding: 60px 0;
+      }
+
+      .section-one .heading {
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+        color: #000;
+      }
+
+      .section-one .heading span {
+        background-color: #e31e24;
+        color: #fff;
+        padding: 10px 40px;
+        font-weight: 700;
+      }
+
+      .content-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+        position: relative;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+        margin-top: 60px;
+      }
+
+      .text-content {
+        background: rgba(52, 152, 219, 0.6);
+        padding: 40px;
+        color: #fff;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        letter-spacing: 0.5px;
+      }
+
+      .image-content {
+        position: relative;
+        z-index: 10;
+      }
+
+      .image-content img {
+        width: 100%;
+        height: auto;
+        display: block;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Red accent line */
+      .red-accent {
+        position: absolute;
+        width: 6px;
+        height: 600px;
+        background-color: #e31e24;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      /* Second Section - What Makes */
+      .section-two {
+        position: relative;
+        min-height: 100vh;
+        background-color: #000;
+        padding: 80px 0;
+      }
+
+      .section-two .heading-block {
+        position: relative;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-two .heading {
+        font-size: 3.5rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        line-height: 1.3;
+        color: #fff;
+      }
+
+      .section-two .heading-highlight {
+        display: inline-block;
+        background-color: #e31e24;
+        color: #fff;
+        padding: 10px 40px;
+        font-weight: 700;
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+      }
+
+      /* Red accent bar */
+      .red-bar {
+        position: absolute;
+        width: 50%;
+        height: 8px;
+        background-color: #e31e24;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .scaffold-image {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .scaffold-image img {
+        width: 100%;
+        height: auto;
+        display: block;
         opacity: 0.8;
       }
 
-      /* Main carousel wrapper */
-      .carousel-wrapper {
-        flex: 1;
-        position: relative;
-        overflow: hidden;
-      }
-
-      /* Carousel track */
-      .carousel-track {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-      }
-
-      .carousel-slide {
-        min-width: 100%;
-        height: 500px;
-        background-color: #ddd;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-size: cover;
-        background-position: center;
-        border-radius: 12px;
-        overflow: hidden;
-      }
-
-      .carousel-slide img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
-      }
-
-      /* Navigation arrows */
-      .arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.9);
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 10;
-        font-size: 2rem;
-        font-weight: bold;
-        color: #3ca6ac;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      }
-
-      .arrow:hover {
-        background: #3ca6ac;
-        color: white;
-        transform: translateY(-50%) scale(1.1);
-      }
-
-      .arrow-left {
-        left: -80px;
-      }
-
-      .arrow-right {
-        right: -80px;
-      }
-
-      /* Dots indicator */
-      .carousel-dots {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
-      }
-
-      .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: #ccc;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      .dot.active {
-        background-color: #666;
-      }
-
-      /* Responsive design */
+      /* Responsive Design */
       @media (max-width: 1024px) {
-        .side-preview {
-          width: 150px;
-          height: 300px;
+        .section-one .heading,
+        .section-two .heading,
+        .section-two .heading-highlight {
+          font-size: 2.5rem;
         }
 
-        .carousel-slide {
-          height: 400px;
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
         }
 
-        .arrow-left {
-          left: -60px;
-        }
-
-        .arrow-right {
-          right: -60px;
+        .red-accent {
+          display: none;
         }
       }
 
       @media (max-width: 768px) {
-        .side-preview {
-          display: none;
-        }
-
-        .arrow {
-          width: 50px;
-          height: 50px;
-          font-size: 2rem;
-        }
-
-        .arrow-left {
-          left: 10px;
-        }
-
-        .arrow-right {
-          right: 10px;
-        }
-
-        .carousel-slide {
-          height: 300px;
-        }
-
-        .gallery-title {
+        .section-one .heading,
+        .section-two .heading,
+        .section-two .heading-highlight {
           font-size: 1.8rem;
-          margin-bottom: 30px;
+        }
+
+        .section-one .heading span,
+        .section-two .heading-highlight {
+          padding: 8px 20px;
+        }
+
+        .text-content {
+          padding: 30px;
+          font-size: 0.9rem;
+        }
+
+        .content-wrapper,
+        .scaffold-image {
+          padding: 0 20px;
+        }
+
+        .red-bar {
+          width: 70%;
         }
       }
     </style>
   </head>
   <body>
-    <h1 class="gallery-title">GALLERY</h1>
+    <div class="about-banner">
+      <!-- Section 1: About The Company -->
+      <div class="section-one">
+        <h1 class="heading"><span>ABOUT</span> THE COMPANY</h1>
 
-    <div class="carousel-container">
-      <!-- Left arrow -->
-      <button class="arrow arrow-left" onclick="moveSlide(-1)">‹</button>
+        <div class="content-wrapper">
+          <div class="about-content">
+            <div class="text-content">
+              <p>
+                A backbone of real estate industry, scaffolding is the unsung
+                hero that ensures safety and efficiency at every stage of
+                construction. Scaffolding has evolved from the use of wood and
+                bamboo to high-quality metal fittings, platforms and pipes. And
+                with a vision to provide superior quality scaffolding with the
+                highest safety standards, Pune Scaffolding was incepted.
+              </p>
+              <br />
+              <p>
+                Catering to some esteemed names of construction industry, Pune
+                Scaffolding is now a respectable organization offering wide
+                range of rental services. From undertaking turnkey projects to
+                supply scaffolding equipment for consulting and assembling it,
+                Pune Scaffolding ensures that it adheres to highest standards of
+                safety, quality and service.
+              </p>
+            </div>
 
-      <!-- Left preview -->
-      <div class="side-preview" id="leftPreview" onclick="moveSlide(-1)"></div>
+            <div class="image-content">
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=1000&fit=crop"
+                alt="Scaffolding Structure"
+              />
+            </div>
+          </div>
 
-      <!-- Main carousel -->
-      <div class="carousel-wrapper">
-        <div class="carousel-track" id="carouselTrack">
-          <!-- Slides will be populated by JavaScript -->
+          <div class="red-accent"></div>
         </div>
       </div>
 
-      <!-- Right preview -->
-      <div class="side-preview" id="rightPreview" onclick="moveSlide(1)"></div>
+      <!-- Section 2: What Makes Pune Scaffolding -->
+      <div class="section-two">
+        <div class="heading-block">
+          <h1 class="heading">
+            WHAT MAKES<br />
+            PUNE SCAFFOLDING<br />
+            THE <span class="heading-highlight">RIGHT CHOICE?</span>
+          </h1>
+          <div class="red-bar"></div>
+        </div>
 
-      <!-- Right arrow -->
-      <button class="arrow arrow-right" onclick="moveSlide(1)">›</button>
+        <div class="scaffold-image">
+          <img
+            src="https://images.unsplash.com/photo-1597476128573-b193bb965eb9?w=1400&h=600&fit=crop"
+            alt="Scaffolding Framework"
+          />
+        </div>
+      </div>
     </div>
-
-    <!-- Dots indicator -->
-    <div class="carousel-dots" id="carouselDots"></div>
-
-    <script>
-      // Sample images - replace with your own from img folder
-      const images = [
-        "img/proj-1.png",
-        "img/proj-2.png",
-        "img/proj-3.png",
-        "img/proj-4.png",
-      ];
-
-      let currentSlide = 0;
-      const track = document.getElementById("carouselTrack");
-      const dotsContainer = document.getElementById("carouselDots");
-      const leftPreview = document.getElementById("leftPreview");
-      const rightPreview = document.getElementById("rightPreview");
-
-      // Create slides
-      images.forEach((img, index) => {
-        const slide = document.createElement("div");
-        slide.className = "carousel-slide";
-        slide.style.backgroundImage = `url(${img})`;
-        track.appendChild(slide);
-
-        // Create dot
-        const dot = document.createElement("div");
-        dot.className = "dot";
-        if (index === 0) dot.classList.add("active");
-        dot.onclick = () => goToSlide(index);
-        dotsContainer.appendChild(dot);
-      });
-
-      function updateCarousel() {
-        // Move track
-        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        // Update dots
-        const dots = document.querySelectorAll(".dot");
-        dots.forEach((dot, index) => {
-          dot.classList.toggle("active", index === currentSlide);
-        });
-
-        // Update side previews
-        const prevIndex = (currentSlide - 1 + images.length) % images.length;
-        const nextIndex = (currentSlide + 1) % images.length;
-
-        leftPreview.style.backgroundImage = `url(${images[prevIndex]})`;
-        rightPreview.style.backgroundImage = `url(${images[nextIndex]})`;
-      }
-
-      function moveSlide(direction) {
-        currentSlide =
-          (currentSlide + direction + images.length) % images.length;
-        updateCarousel();
-      }
-
-      function goToSlide(index) {
-        currentSlide = index;
-        updateCarousel();
-      }
-
-      // Auto-play (optional)
-      // setInterval(() => moveSlide(1), 5000);
-
-      // Initialize
-      updateCarousel();
-
-      // Keyboard navigation
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "ArrowLeft") moveSlide(-1);
-        if (e.key === "ArrowRight") moveSlide(1);
-      });
-
-      // Touch/swipe support for mobile
-      let touchStartX = 0;
-      let touchEndX = 0;
-
-      track.addEventListener("touchstart", (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      });
-
-      track.addEventListener("touchend", (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-      });
-
-      function handleSwipe() {
-        if (touchEndX < touchStartX - 50) moveSlide(1);
-        if (touchEndX > touchStartX + 50) moveSlide(-1);
-      }
-    </script>
   </body>
 </html>
