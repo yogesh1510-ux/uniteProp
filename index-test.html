@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unite Prop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+      }
+
+      /* Header Styles */
+      .header {
+        display: flex;
+        background-color: #c1c0cd;
+      }
+
+      .logo-container {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo {
+        width: 3.5rem;
+        margin-left: 1.75rem;
+      }
+
+      .nav-container {
+        display: flex;
+        padding: 2.25rem;
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+      }
+
+      #navBar {
+        display: none;
+        list-style: none;
+        flex-direction: column;
+        gap: 1rem;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background-color: white;
+        width: 100%;
+        padding: 1.5rem;
+        z-index: 50;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+      }
+
+      #navBar.show {
+        display: flex;
+      }
+
+      #navBar li {
+        margin: 0;
+      }
+
+      #navBar a {
+        text-decoration: none;
+        color: #585858;
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        font-weight: 700;
+      }
+
+      #navBar a:hover {
+        color: #374151;
+      }
+
+      #navBtn {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        display: block;
+      }
+
+      #navBtn svg {
+        width: 2.25rem;
+        height: 2.25rem;
+        color: #374151;
+      }
+
+      /* Hero Section */
+      .hero-section img {
+        width: 100%;
+        margin-top: 1.5rem;
+      }
+
+      /* About Section */
+      .about-section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .about-text {
+        text-align: center;
+        background-color: #16a6ac;
+        padding: 1.5rem;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+        color: black;
+        line-height: 24px;
+        width: 100%;
+      }
+
+      .about-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+
+      /* Ongoing Projects */
+      .ongoing-projects {
+        width: 100%;
+        padding: 0 1rem;
+        margin: 2rem auto 0;
+      }
+
+      .section-heading {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .section-heading h2 {
+        font-family: "Matangi", serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+        letter-spacing: 2px;
+        color: #3ca6ac;
+      }
+
+      .projects-container {
+        margin-top: 2rem;
+        width: 100%;
+      }
+
+      .project-item {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 1.5rem;
+      }
+
+      .project-item img {
+        width: 100%;
+        height: auto;
+      }
+
+      .project-info {
+        flex: 1;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        font-family: "Roboto", sans-serif;
+        height: auto;
+        margin: auto 0;
+      }
+
+      .project-info.teal {
+        background-color: #3ca6ac;
+      }
+
+      .project-info.gray {
+        background-color: #e5e5e5;
+      }
+
+      .project-title {
+        padding-bottom: 0.5rem;
+        display: inline-block;
+        width: max-content;
+        font-size: 1.125rem;
+        color: black;
+        letter-spacing: 2px;
+        font-weight: 500;
+        border-bottom: 2px solid black;
+      }
+
+      .project-type {
+        margin-top: 1rem;
+        font-size: 1rem;
+        font-weight: 300;
+        letter-spacing: 1.5px;
+        color: black;
+      }
+
+      .project-location {
+        margin-top: 0.25rem;
+        font-size: 1rem;
+        font-weight: 300;
+        letter-spacing: 2px;
+        color: black;
+      }
+
+      .view-more-btn {
+        margin-top: 1rem;
+        width: fit-content;
+        padding: 0.5rem 1.25rem;
+        letter-spacing: 1.5px;
+        font-size: 0.875rem;
+        color: white;
+        background-color: black;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Completed Projects */
+      .completed-projects {
+        width: 90%;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      .completed-projects h1 {
+        font-size: 1.875rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #14b8a6;
+        letter-spacing: 0.05em;
+      }
+
+      .carousel-container {
+        position: relative;
+        background-color: #e5e7eb;
+        padding: 2rem 0.5rem;
+      }
+
+      .carousel-content {
+        max-width: 72rem;
+        margin: 0 auto;
+      }
+
+      .desktop-carousel {
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .carousel-arrow {
+        flex-shrink: 0;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #4b5563;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .carousel-arrow:hover {
+        background-color: #374151;
+      }
+
+      .carousel-arrow svg {
+        width: 2rem;
+        height: 2rem;
+        color: white;
+      }
+
+      .carousel-inner {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .carousel-image {
+        width: 16rem;
+        height: 12rem;
+        background-color: white;
+        border: 2px solid #9ca3af;
+        flex-shrink: 0;
+      }
+
+      .carousel-text-container {
+        flex: 1;
+        max-width: 28rem;
+      }
+
+      .carousel-text {
+        color: #1f2937;
+        font-size: 1rem;
+        line-height: 1.75;
+      }
+
+      .mobile-carousel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .mobile-carousel .carousel-image {
+        width: 100%;
+        max-width: 24rem;
+        height: 12rem;
+      }
+
+      .mobile-carousel .carousel-text-container {
+        padding: 0 1rem;
+      }
+
+      .mobile-carousel .carousel-text {
+        text-align: center;
+      }
+
+      .mobile-arrows {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .indicators {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+        padding: 0 1rem;
+      }
+
+      .indicator {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+      }
+
+      .indicator.active {
+        background-color: #14b8a6;
+      }
+
+      .indicator.inactive {
+        background-color: #9ca3af;
+      }
+
+      /* Enquire Form */
+      .enquire-section {
+        width: 100%;
+        max-width: 36rem;
+        margin: 2.5rem auto;
+        padding: 0 1rem;
+      }
+
+      .enquire-section h1 {
+        font-size: 1.875rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #3ca6ac;
+        letter-spacing: 0.05em;
+      }
+
+      .form-container {
+        background-color: #3ca6ac;
+        padding: 1.5rem;
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-input {
+        width: 100%;
+        background-color: transparent;
+        color: white;
+        padding: 0.5rem 0;
+        border: none;
+        border-bottom: 2px solid white;
+        border-radius: 0;
+        outline: none;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+      }
+
+      .form-input::placeholder {
+        color: white;
+      }
+
+      .form-input:focus {
+        border: none;
+        border-bottom: 2px solid white;
+        outline: none;
+      }
+
+      .form-label {
+        color: white;
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+        letter-spacing: 0.05em;
+        display: block;
+      }
+
+      .form-select {
+        width: 100%;
+        background-color: transparent;
+        color: white;
+        padding: 0.5rem 0;
+        cursor: pointer;
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+        border: none;
+        border-bottom: 2px solid white;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: none;
+      }
+
+      .form-select option {
+        background-color: #14b8a6;
+        color: white;
+      }
+
+      .submit-btn {
+        background-color: white;
+        color: #0d9488;
+        font-weight: 600;
+        padding: 0.5rem 1.5rem;
+        border: none;
+        cursor: pointer;
+        letter-spacing: 0.05em;
+        font-size: 0.875rem;
+        transition: background-color 0.3s;
+      }
+
+      .submit-btn:hover {
+        background-color: #f3f4f6;
+      }
+
+      /* Blogs Section */
+      .blogs-section {
+        margin-top: 2.5rem;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .blogs-container {
+        background-color: #3ca6ac;
+        padding: 3rem 0;
+      }
+
+      .blogs-container h1 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: white;
+        letter-spacing: 0.05em;
+      }
+
+      .desktop-blogs {
+        display: none;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        padding: 0 1rem;
+        max-width: 80rem;
+        margin: 0 auto 3rem;
+      }
+
+      .blog-card {
+        background-color: white;
+        padding: 1.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .blog-text {
+        color: #1f2937;
+        font-size: 0.875rem;
+        line-height: 1.75;
+        text-align: center;
+      }
+
+      .mobile-blogs {
+        display: block;
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .mobile-blog-card {
+        background-color: white;
+        padding: 1.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+        max-width: 24rem;
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .blog-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        padding: 0 1rem;
+      }
+
+      .blog-indicator {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 50%;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+        transition: opacity 0.3s;
+      }
+
+      .blog-indicator.active {
+        opacity: 1;
+      }
+
+      .blog-indicator.inactive {
+        opacity: 0.5;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #e5e7eb;
+        padding: 2rem 1rem;
+        margin-top: 1.25rem;
+      }
+
+      .footer-container {
+        max-width: 80rem;
+        margin: 0 auto;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: start;
+      }
+
+      .footer-logo {
+        display: flex;
+        justify-content: center;
+        align-items: start;
+      }
+
+      .footer-logo img {
+        width: 8rem;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .footer-section {
+        text-align: center;
+      }
+
+      .footer-section h3 {
+        font-weight: 500;
+        color: #2d2d2d;
+        margin-bottom: 0.75rem;
+        letter-spacing: 0.05em;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .footer-section p {
+        color: #393939;
+        line-height: 1.75;
+        font-size: 0.75rem;
+        font-weight: 400;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .footer-contact p {
+        font-weight: 500;
+        color: #2d2d2d;
+        margin-bottom: 0.25rem;
+        font-size: 0.75rem;
+      }
+
+      .footer-social {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+        align-items: start;
+      }
+
+      .footer-social img {
+        width: 2.5rem;
+        height: auto;
+      }
+
+      /* Desktop Styles */
+      @media (min-width: 768px) {
+        .logo {
+          width: 7rem;
+        }
+
+        #navBar {
+          display: flex !important;
+          flex-direction: row;
+          gap: 2.5rem;
+          position: static;
+          background-color: transparent;
+          width: auto;
+          padding: 0;
+          box-shadow: none;
+        }
+
+        #navBtn {
+          display: none;
+        }
+
+        .about-section {
+          width: 80%;
+          position: relative;
+          bottom: 3rem;
+        }
+
+        .about-text {
+          padding: 5rem;
+          font-size: 25px;
+          letter-spacing: 2.58px;
+          line-height: 33px;
+          width: 75%;
+          margin: 0 auto;
+        }
+
+        .about-image img {
+          width: 75%;
+        }
+
+        .ongoing-projects {
+          width: 80%;
+          padding: 0;
+          margin-top: 0;
+        }
+
+        .section-heading h2 {
+          font-size: 2.813rem;
+          line-height: 4.375rem;
+          letter-spacing: 4.63px;
+        }
+
+        .projects-container {
+          margin-top: 4rem;
+          padding: 0 1.5rem;
+        }
+
+        .project-item {
+          flex-direction: row;
+          margin-bottom: 0;
+        }
+
+        .project-item.reverse {
+          flex-direction: row-reverse;
+        }
+
+        .project-item img {
+          width: 600px;
+        }
+
+        .project-info {
+          padding: 2.5rem;
+          min-height: 300px;
+        }
+
+        .project-info.align-right {
+          align-items: flex-end;
+        }
+
+        .project-title {
+          font-size: 1.5rem;
+          letter-spacing: 3.09px;
+        }
+
+        .project-type {
+          margin-top: 1.5rem;
+          font-size: 1.25rem;
+          letter-spacing: 2.58px;
+        }
+
+        .project-location {
+          font-size: 1.25rem;
+          letter-spacing: 3.09px;
+        }
+
+        .view-more-btn {
+          margin-top: 1.5rem;
+          padding: 0.5rem 1.5rem;
+          letter-spacing: 2.06px;
+          font-size: 1rem;
+        }
+
+        .completed-projects {
+          width: 77%;
+          margin-top: 4rem;
+        }
+
+        .completed-projects h1 {
+          font-size: 3rem;
+          margin-bottom: 3rem;
+        }
+
+        .carousel-container {
+          padding: 3rem 1rem;
+        }
+
+        .desktop-carousel {
+          display: flex;
+          gap: 2rem;
+        }
+
+        .carousel-arrow {
+          width: 4rem;
+          height: 4rem;
+        }
+
+        .carousel-arrow svg {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+
+        .carousel-inner {
+          gap: 2rem;
+        }
+
+        .carousel-image {
+          width: 24rem;
+          height: 16rem;
+        }
+
+        .carousel-text {
+          font-size: 1.125rem;
+        }
+
+        .mobile-carousel {
+          display: none;
+        }
+
+        .indicators {
+          margin-top: 2rem;
+        }
+
+        .enquire-section {
+          max-width: 48rem;
+        }
+
+        .enquire-section h1 {
+          font-size: 3rem;
+          margin-bottom: 3rem;
+        }
+
+        .form-container {
+          padding: 3rem;
+        }
+
+        .form-group {
+          margin-bottom: 3rem;
+        }
+
+        .form-input {
+          padding: 0.75rem 0;
+          font-size: 1rem;
+        }
+
+        .form-label {
+          font-size: 0.875rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .form-select {
+          padding: 0.75rem 0;
+          font-size: 1rem;
+        }
+
+        .submit-btn {
+          margin-top: 0.5rem;
+          padding: 0.5rem 2rem;
+          font-size: 1rem;
+        }
+
+        .blogs-container {
+          padding: 4rem 0;
+        }
+
+        .blogs-container h1 {
+          font-size: 3.75rem;
+          margin-bottom: 4rem;
+        }
+
+        .desktop-blogs {
+          display: grid;
+          gap: 2rem;
+          padding: 0 2rem;
+        }
+
+        .blog-card {
+          padding: 2rem;
+        }
+
+        .blog-text {
+          font-size: 1rem;
+        }
+
+        .mobile-blogs {
+          display: none;
+        }
+
+        footer {
+          padding: 3rem 1.5rem;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem;
+        }
+
+        .footer-logo {
+          justify-content: flex-start;
+        }
+
+        .footer-section {
+          text-align: left;
+        }
+
+        .footer-section h3 {
+          margin-bottom: 1rem;
+          font-size: 0.875rem;
+        }
+
+        .footer-section p {
+          font-size: 0.875rem;
+        }
+
+        .footer-contact p {
+          font-size: 0.875rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .footer-social {
+          justify-content: flex-start;
+          gap: 1rem;
+        }
+
+        .footer-social img {
+          width: 2.75rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .about-text {
+          width: 66.666667%;
+        }
+
+        .about-image img {
+          width: 66.666667%;
+        }
+
+        .section-heading h2 {
+          font-size: 2.813rem;
+        }
+
+        .desktop-carousel {
+          gap: 2rem;
+        }
+
+        .carousel-arrow {
+          width: 4rem;
+          height: 4rem;
+        }
+
+        .carousel-arrow svg {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
+
+        .enquire-section {
+          max-width: 48rem;
+        }
+
+        .form-container {
+          padding: 4rem;
+        }
+
+        .desktop-blogs {
+          gap: 2rem;
+          padding: 0 2rem;
+        }
+
+        .blogs-container h1 {
+          font-size: 3.75rem;
+        }
+
+        footer {
+          padding: 4rem 4rem;
+        }
+
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 4rem;
+        }
+
+        .footer-logo img {
+          width: 12rem;
+        }
+
+        .footer-section h3 {
+          font-size: 1rem;
+        }
+
+        .footer-section p {
+          font-size: 1rem;
+        }
+
+        .footer-contact p {
+          font-size: 1rem;
+        }
+
+        .footer-social img {
+          width: 3.5rem;
+        }
+      }
+
+      /*====================*/
+      .dropdown > a {
+        /* display: flex;
+        justify-content: space-between;
+        align-items: center;*/
+      }
+
+      .arrow {
+        font-size: 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .arrow.rotate {
+        transform: rotate(180deg);
+      }
+
+      .dropdown {
+        position: relative;
+      }
+
+      /* Dropdown menu */
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #f9f9f9;
+        min-width: 200px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        padding: 0 1rem;
+        border-left: 3px solid #3ca6ac;
+        z-index: 100;
+      }
+
+      /* When open */
+      .dropdown-menu.show {
+        max-height: 300px;
+        padding: 0.75rem 1rem;
+      }
+
+      /* Items */
+      .dropdown-menu li {
+        margin: 0.4rem 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- header  -->
+    <div class="header">
+      <div class="logo-container">
+        <img src="img/logo.png" alt="Unite Properties Logo" class="logo" />
+      </div>
+
+      <div class="nav-container">
+        <ul id="navBar">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="about.html">ABOUT US</a></li>
+          <!-- <li><a href="project.html">PROJECTS</a></li>-->
+          <li class="dropdown">
+            <a href="javascript:void(0)" id="projectsBtn">
+              PROJECTS <span class="arrow">▾</span>
+            </a>
+
+            <ul class="dropdown-menu" id="projectsMenu">
+              <li><a href="new-projects.html">New Projects</a></li>
+              <li><a href="upcoming-projects.html">Upcoming Projects</a></li>
+              <li><a href="completed-projects.html">Completed Projects</a></li>
+            </ul>
+          </li>
+          <li><a href="#media">MEDIA</a></li>
+          <li><a href="#nri">NRI</a></li>
+          <li><a href="#careers">CAREERS</a></li>
+          <li><a href="#contact">CONTACT US</a></li>
+        </ul>
+
+        <button id="navBtn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- hero section  -->
+    <div class="hero-section">
+      <img src="img/banner.png" alt="Banner" />
+    </div>
+
+    <!-- about section  -->
+    <div class="about-section">
+      <div class="about-text">
+        Unite Properties stands as a progressive force in Pune's real estate
+        landscape, crafting contemporary residential and commercial spaces that
+        reflect growth, ambition and smart design. The brand is driven by a keen
+        understanding of evolving market needs and a commitment to operational
+        excellence. With landmark developments across Pune's most promising
+        locations, Unite Properties has built a track record of delivering with
+        precision ensuring timely handovers, financial transparency, and strict
+        regulatory compliance. Its focus remains on creating value-driven spaces
+        that instil trust and upgrade lifestyles!
+      </div>
+
+      <div class="about-image">
+        <img src="img/spirel.png" alt="Unite Properties" />
+      </div>
+    </div>
+
+    <!-- ongoing projects  -->
+    <div class="ongoing-projects">
+      <div class="section-heading">
+        <h2>ONGOING PROJECTS</h2>
+      </div>
+
+      <div class="projects-container">
+        <!-- Project 1 -->
+        <div class="project-item">
+          <img src="img/proj-1.png" alt="iBZ Project" />
+          <div class="project-info teal">
+            <p class="project-title">iBZ</p>
+            <h3 class="project-type">SHOPS AND OFFICE SPACES</h3>
+            <p class="project-location">At Hinjawadi</p>
+            <button class="view-more-btn">VIEW MORE</button>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-item reverse">
+          <img src="img/proj-2.png" alt="Redision Royale Project" />
+          <div class="project-info gray align-right">
+            <p class="project-title">REDISION ROYALE</p>
+            <h3 class="project-type">3 BHK HOMES</h3>
+            <p class="project-location">At Kondhwa</p>
+            <button class="view-more-btn">VIEW MORE</button>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-item">
+          <img src="img/proj-3.png" alt="Wisdom Park Project" />
+          <div class="project-info teal">
+            <p class="project-title">WISDOM PARK PHASE 2</p>
+            <h3 class="project-type">2 & 3 BHK HOMES</h3>
+            <p class="project-location">At Pimpri</p>
+            <button class="view-more-btn">VIEW MORE</button>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-item reverse">
+          <img src="img/proj-4.png" alt="Unite 1 Project" />
+          <div class="project-info gray align-right">
+            <p class="project-title">UNITE 1</p>
+            <h3 class="project-type">PREMIUM 3 BHK HOMES</h3>
+            <p class="project-location">Wakad</p>
+            <button class="view-more-btn">VIEW MORE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- completed projects  -->
+    <div class="completed-projects">
+      <h1>COMPLETED PROJECTS</h1>
+
+      <div class="carousel-container">
+        <div class="carousel-content">
+          <!-- Desktop Layout -->
+          <div class="desktop-carousel">
+            <button
+              onclick="prevSlide()"
+              class="carousel-arrow"
+              aria-label="Previous slide"
+            >
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                ></path>
+              </svg>
+            </button>
+
+            <div class="carousel-inner">
+              <div class="carousel-image"></div>
+              <div class="carousel-text-container">
+                <p id="slideText" class="carousel-text">
+                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                  diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                  aliquam erat volutpat.
+                </p>
+              </div>
+            </div>
+
+            <button
+              onclick="nextSlide()"
+              class="carousel-arrow"
+              aria-label="Next slide"
+            >
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Mobile Layout -->
+          <div class="mobile-carousel">
+            <div class="carousel-image"></div>
+            <div class="carousel-text-container">
+              <p id="slideTextMobile" class="carousel-text">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                aliquam erat volutpat.
+              </p>
+            </div>
+
+            <div class="mobile-arrows">
+              <button
+                onclick="prevSlide()"
+                class="carousel-arrow"
+                aria-label="Previous slide"
+              >
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                  ></path>
+                </svg>
+              </button>
+
+              <button
+                onclick="nextSlide()"
+                class="carousel-arrow"
+                aria-label="Next slide"
+              >
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide Indicators -->
+        <div class="indicators">
+          <button onclick="goToSlide(0)" class="indicator active"></button>
+          <button onclick="goToSlide(1)" class="indicator inactive"></button>
+          <button onclick="goToSlide(2)" class="indicator inactive"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- enquire now  -->
+    <div class="enquire-section">
+      <h1>ENQUIRE NOW</h1>
+
+      <div class="form-container">
+        <form id="enquireForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="FULL NAME"
+              class="form-input"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="tel"
+              id="mobileNo"
+              name="mobileNo"
+              placeholder="MOBILE NO."
+              class="form-input"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="EMAIL"
+              class="form-input"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">SELECT PROJECT</div>
+            <select id="project" name="project" class="form-select" required>
+              <option value="">SELECT VALUE</option>
+              <option value="project1">iBZ</option>
+              <option value="project2">REDISION ROYALE</option>
+              <option value="project3">WISDOM PARK PHASE 2</option>
+              <option value="other">UNITE 1</option>
+            </select>
+          </div>
+
+          <div>
+            <button type="submit" class="submit-btn">SUBMIT</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- blogs  -->
+    <div class="blogs-section">
+      <div class="blogs-container">
+        <h1>BLOGS</h1>
+
+        <!-- Desktop View -->
+        <div id="desktopBlogs" class="desktop-blogs"></div>
+
+        <!-- Mobile View -->
+        <div class="mobile-blogs">
+          <div class="mobile-blog-card">
+            <p id="blogTextMobile" class="blog-text"></p>
+          </div>
+        </div>
+
+        <!-- Indicators -->
+        <div id="blogIndicators" class="blog-indicators"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-logo">
+            <img src="img/logo.png" alt="Unite Properties Logo" />
+          </div>
+
+          <div class="footer-section">
+            <h3>CORPORATE OFFICE</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
+            </p>
+          </div>
+
+          <div class="footer-section footer-contact">
+            <p>+91 00000 00000</p>
+            <p>Lorem ipsum dolor sit a</p>
+          </div>
+
+          <div class="footer-social">
+            <img src="img/facebook.png" alt="Facebook" />
+            <img src="img/youtube.png" alt="YouTube" />
+            <img src="img/insta.png" alt="Instagram" />
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+    <script>
+      // EmailJS Initialization
+      (function () {
+        emailjs.init("YOUR_PUBLIC_KEY");
+      })();
+
+      // Form Submit Handler
+      function handleSubmit(e) {
+        e.preventDefault();
+
+        emailjs
+          .sendForm(
+            "YOUR_SERVICE_ID",
+            "YOUR_TEMPLATE_ID",
+            document.getElementById("enquireForm")
+          )
+          .then(
+            function () {
+              alert("Enquiry sent successfully!");
+              document.getElementById("enquireForm").reset();
+            },
+            function (error) {
+              alert("Failed to send enquiry");
+              console.log(error);
+            }
+          );
+      }
+
+      // Completed Projects Carousel
+      let currentSlide = 0;
+
+      const projects = [
+        {
+          id: 1,
+          description:
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.",
+        },
+        {
+          id: 2,
+          description:
+            "Second project description goes here. This is a sample text for the second completed project in the carousel.",
+        },
+        {
+          id: 3,
+          description:
+            "Third project description. Another completed project showcasing different work and achievements in our portfolio.",
+        },
+      ];
+
+      function updateSlide() {
+        const desktopText = document.getElementById("slideText");
+        const mobileText = document.getElementById("slideTextMobile");
+
+        if (desktopText) {
+          desktopText.textContent = projects[currentSlide].description;
+        }
+        if (mobileText) {
+          mobileText.textContent = projects[currentSlide].description;
+        }
+
+        const indicators = document.querySelectorAll(".indicators .indicator");
+        indicators.forEach((indicator, index) => {
+          if (index === currentSlide) {
+            indicator.className = "indicator active";
+          } else {
+            indicator.className = "indicator inactive";
+          }
+        });
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % projects.length;
+        updateSlide();
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + projects.length) % projects.length;
+        updateSlide();
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlide();
+      }
+
+      // Blogs Carousel
+      let currentBlog = 0;
+      let autoAdvanceInterval = null;
+
+      const blogs = [
+        {
+          id: 1,
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 2,
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi",
+        },
+        {
+          id: 3,
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 4,
+          text: "test ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 5,
+          text: "2test ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 6,
+          text: "3test ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+        {
+          id: 7,
+          text: "4test ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+        },
+      ];
+
+      function updateDesktopBlogs() {
+        const container = document.getElementById("desktopBlogs");
+        container.innerHTML = "";
+
+        const startIndex = currentBlog;
+        const blogsToShow = [];
+
+        for (let i = 0; i < 3; i++) {
+          const index = (startIndex + i) % blogs.length;
+          blogsToShow.push(blogs[index]);
+        }
+
+        blogsToShow.forEach((blog) => {
+          const card = document.createElement("div");
+          card.className = "blog-card";
+          card.innerHTML = `<p class="blog-text">${blog.text}</p>`;
+          container.appendChild(card);
+        });
+      }
+
+      function initIndicators() {
+        const indicatorsContainer = document.getElementById("blogIndicators");
+        indicatorsContainer.innerHTML = "";
+
+        blogs.forEach((blog, index) => {
+          const button = document.createElement("button");
+          button.onclick = () => goToBlog(index);
+          button.className =
+            index === 0 ? "blog-indicator active" : "blog-indicator inactive";
+          button.setAttribute("aria-label", `Go to blog ${index + 1}`);
+          indicatorsContainer.appendChild(button);
+        });
+      }
+
+      function updateBlog() {
+        updateDesktopBlogs();
+
+        const mobileText = document.getElementById("blogTextMobile");
+        if (mobileText) {
+          mobileText.textContent = blogs[currentBlog].text;
+        }
+
+        const indicators = document.getElementById("blogIndicators").children;
+        for (let i = 0; i < indicators.length; i++) {
+          if (i === currentBlog) {
+            indicators[i].className = "blog-indicator active";
+          } else {
+            indicators[i].className = "blog-indicator inactive";
+          }
+        }
+      }
+
+      function goToBlog(index) {
+        currentBlog = index;
+        updateBlog();
+
+        if (autoAdvanceInterval && window.innerWidth < 768) {
+          clearInterval(autoAdvanceInterval);
+          startAutoAdvance();
+        }
+      }
+
+      function startAutoAdvance() {
+        autoAdvanceInterval = setInterval(() => {
+          currentBlog = (currentBlog + 1) % blogs.length;
+          updateBlog();
+        }, 5000);
+      }
+
+      // Mobile Navigation Toggle
+      document.addEventListener("DOMContentLoaded", function () {
+        const navBtn = document.getElementById("navBtn");
+        const navBar = document.getElementById("navBar");
+
+        navBtn.addEventListener("click", function () {
+          navBar.classList.toggle("show");
+        });
+
+        const navLinks = navBar.querySelectorAll("a");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function () {
+            if (window.innerWidth < 768) {
+              navBar.classList.remove("show");
+            }
+          });
+        });
+
+        document.addEventListener("click", function (event) {
+          const isClickInsideNav = navBar.contains(event.target);
+          const isClickOnButton = navBtn.contains(event.target);
+
+          if (
+            !isClickInsideNav &&
+            !isClickOnButton &&
+            navBar.classList.contains("show")
+          ) {
+            if (window.innerWidth < 768) {
+              navBar.classList.remove("show");
+            }
+          }
+        });
+
+        // Initialize blogs
+        initIndicators();
+        updateBlog();
+        startAutoAdvance();
+      });
+    </script>
+
+    <!-- Dropdown-->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navBtn = document.getElementById("navBtn");
+        const navBar = document.getElementById("navBar");
+
+        navBtn.addEventListener("click", function () {
+          navBar.classList.toggle("show");
+        });
+
+        // Dropdown
+        const projectsBtn = document.getElementById("projectsBtn");
+        const projectsMenu = document.getElementById("projectsMenu");
+        const arrow = projectsBtn.querySelector(".arrow");
+
+        projectsBtn.addEventListener("click", function (e) {
+          e.preventDefault(); // Prevent page jump
+          projectsMenu.classList.toggle("show");
+          arrow.classList.toggle("rotate");
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (event) {
+          if (
+            !projectsBtn.contains(event.target) &&
+            !projectsMenu.contains(event.target)
+          ) {
+            projectsMenu.classList.remove("show");
+            arrow.classList.remove("rotate");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

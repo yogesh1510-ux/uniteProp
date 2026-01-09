@@ -679,6 +679,129 @@
           padding-right: 7rem;
         }
       }
+
+      /* new dropdoen  */
+      .dropdown {
+        width: 100%;
+      }
+
+      .dropdown > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .arrow {
+        font-size: 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .arrow.rotate {
+        transform: rotate(180deg);
+      }
+
+      /* Dropdown menu */
+      .dropdown-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        list-style: none;
+        background: #f9f9f9;
+        padding: 0 1rem;
+        margin-top: 0.5rem;
+        border-left: 3px solid #3ca6ac;
+      }
+
+      /* When open */
+      .dropdown-menu.show {
+        max-height: 300px;
+        padding: 0.75rem 1rem;
+      }
+
+      /* Items */
+      .dropdown-menu li {
+        margin: 0.4rem 0;
+      }
+
+      .dropdown-menu a {
+        font-size: 0.95rem;
+        color: #585858;
+        text-decoration: none;
+        letter-spacing: 1px;
+      }
+
+      .dropdown-menu a:hover {
+        color: #3ca6ac;
+      }
+
+      /* ===== DESKTOP NAV FIX ===== */
+      @media (min-width: 768px) {
+        .nav-container {
+          align-items: center;
+        }
+
+        #navBar {
+          height: auto;
+          align-items: center;
+        }
+
+        #navBar > li {
+          position: relative;
+        }
+
+        /* PROJECTS button alignment */
+        .dropdown > a {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 0.5rem 0;
+        }
+
+        /* Dropdown menu (desktop) */
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 220px;
+          background: #ffffff;
+          border-left: none;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+          padding: 0.75rem 0;
+          margin-top: 0.5rem;
+
+          max-height: none;
+          display: none;
+        }
+
+        /* Show dropdown */
+        .dropdown-menu.show {
+          display: block;
+        }
+
+        /* Dropdown items */
+        .dropdown-menu li {
+          margin: 0;
+        }
+
+        .dropdown-menu a {
+          display: block;
+          padding: 0.6rem 1.25rem;
+          font-size: 0.95rem;
+          color: #585858;
+          letter-spacing: 1px;
+          white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+          background-color: #f3f3f3;
+          color: #3ca6ac;
+        }
+
+        /* Arrow fix */
+        .arrow {
+          font-size: 0.9rem;
+        }
+      }
     </style>
   </head>
 
@@ -699,15 +822,18 @@
           <li>
             <a href="about.html">ABOUT US</a>
           </li>
-          <li>
-            <a href="project.html">PROJECTS</a>
+          <li class="dropdown">
+            <a href="javascript:void(0)" id="projectsBtn">
+              PROJECTS <span class="arrow">▾</span>
+            </a>
+
+            <ul class="dropdown-menu" id="projectsMenu">
+              <li><a href="new-projects.html">New Projects</a></li>
+              <li><a href="upcoming-projects.html">Upcoming Projects</a></li>
+              <li><a href="completed-projects.html">Completed Projects</a></li>
+            </ul>
           </li>
-          <li>
-            <a href="#media">MEDIA</a>
-          </li>
-          <li>
-            <a href="#nri">NRI</a>
-          </li>
+
           <li>
             <a href="#careers">CAREERS</a>
           </li>
@@ -926,8 +1052,16 @@
 
         // Close menu when clicking on a link (mobile)
         const navLinks = navBar.querySelectorAll("a");
+
         navLinks.forEach((link) => {
-          link.addEventListener("click", function () {
+          link.addEventListener("click", function (e) {
+            // If it's the PROJECTS button, don't close the menu
+            if (this.id === "projectsBtn") {
+              e.preventDefault();
+              return;
+            }
+
+            // Otherwise close menu (for HOME, ABOUT, etc.)
             if (window.innerWidth < 768) {
               navBar.classList.remove("show");
             }
@@ -949,6 +1083,15 @@
             }
           }
         });
+      });
+
+      const projectsBtn = document.getElementById("projectsBtn");
+      const projectsMenu = document.getElementById("projectsMenu");
+      const arrow = projectsBtn.querySelector(".arrow");
+
+      projectsBtn.addEventListener("click", function () {
+        projectsMenu.classList.toggle("show");
+        arrow.classList.toggle("rotate");
       });
     </script>
   </body>

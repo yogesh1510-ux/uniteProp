@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About Pune Scaffolding</title>
+    <title>Unite Properties - Navigation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       * {
         margin: 0;
@@ -12,249 +19,370 @@
       }
 
       body {
-        font-family: "Arial", "Helvetica", sans-serif;
-        background-color: #000;
-        color: #fff;
+        font-family: "Roboto", sans-serif;
       }
 
-      .about-banner {
+      .font-matangi {
+        font-family: "Matangi", serif;
+      }
+
+      /* ========== HEADER STYLES ========== */
+      .header {
+        display: flex;
+        background-color: #c1c0cd;
+      }
+
+      .logo-container {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo {
+        width: 3.5rem;
+        margin-left: 1.75rem;
+      }
+
+      .nav-container {
+        display: flex;
+        padding: 2.25rem;
         width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+      }
+
+      /* ========== MOBILE NAVIGATION ========== */
+      #navBar {
+        display: none;
+        list-style: none;
+        gap: 1rem;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background-color: white;
+        width: 100%;
+        padding: 1.5rem;
+        z-index: 50;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+      }
+
+      #navBar.show {
+        display: flex;
+      }
+
+      #navBar a {
+        text-decoration: none;
+        color: #585858;
+        font-size: 1.1rem;
+        letter-spacing: 0.05em;
+        font-weight: bold;
+      }
+
+      #navBar a:hover {
+        color: #374151;
+      }
+
+      /* ========== MOBILE MENU BUTTON ========== */
+      #navBtn {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+      }
+
+      #navBtn svg {
+        width: 2.25rem;
+        height: 2.25rem;
+        color: #374151;
+      }
+
+      /* ========== DROPDOWN STYLES ========== */
+      .dropdown {
+        width: 100%;
+      }
+
+      .dropdown > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .arrow {
+        font-size: 1rem;
+        transition: transform 0.3s ease;
+      }
+
+      .arrow.rotate {
+        transform: rotate(180deg);
+      }
+
+      /* ========== MOBILE DROPDOWN MENU ========== */
+      .dropdown-menu {
+        max-height: 0;
         overflow: hidden;
+        transition: max-height 0.35s ease, padding 0.35s ease;
+        list-style: none;
+        background: #f9f9f9;
+        padding: 0 1rem;
+        margin-top: 0.5rem;
+        border-left: 3px solid #3ca6ac;
       }
 
-      /* First Section - About The Company */
-      .section-one {
-        position: relative;
-        min-height: 100vh;
-        background: linear-gradient(to bottom, #fff 50%, #000 50%);
-        padding: 60px 0;
+      .dropdown-menu.show {
+        max-height: 300px;
+        padding: 0.75rem 1rem;
       }
 
-      .section-one .heading {
-        text-align: center;
-        font-size: 3.5rem;
-        font-weight: 300;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 40px;
-        color: #000;
+      .dropdown-menu li {
+        margin: 0.4rem 0;
       }
 
-      .section-one .heading span {
-        background-color: #e31e24;
-        color: #fff;
-        padding: 10px 40px;
-        font-weight: 700;
-      }
-
-      .content-wrapper {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 40px;
-        position: relative;
-      }
-
-      .about-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: start;
-        margin-top: 60px;
-      }
-
-      .text-content {
-        background: rgba(52, 152, 219, 0.6);
-        padding: 40px;
-        color: #fff;
+      .dropdown-menu a {
         font-size: 0.95rem;
-        line-height: 1.8;
-        letter-spacing: 0.5px;
+        color: #585858;
+        text-decoration: none;
+        letter-spacing: 1px;
       }
 
-      .image-content {
-        position: relative;
-        z-index: 10;
+      .dropdown-menu a:hover {
+        color: #3ca6ac;
       }
 
-      .image-content img {
-        width: 100%;
-        height: auto;
-        display: block;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      /* ========== TABLET STYLES ========== */
+      @media (min-width: 640px) {
+        .logo-container {
+          padding: 1.5rem;
+        }
       }
 
-      /* Red accent line */
-      .red-accent {
-        position: absolute;
-        width: 6px;
-        height: 600px;
-        background-color: #e31e24;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      /* Second Section - What Makes */
-      .section-two {
-        position: relative;
-        min-height: 100vh;
-        background-color: #000;
-        padding: 80px 0;
-      }
-
-      .section-two .heading-block {
-        position: relative;
-        text-align: center;
-        margin-bottom: 60px;
-      }
-
-      .section-two .heading {
-        font-size: 3.5rem;
-        font-weight: 300;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        line-height: 1.3;
-        color: #fff;
-      }
-
-      .section-two .heading-highlight {
-        display: inline-block;
-        background-color: #e31e24;
-        color: #fff;
-        padding: 10px 40px;
-        font-weight: 700;
-        font-size: 3.5rem;
-        letter-spacing: 2px;
-      }
-
-      /* Red accent bar */
-      .red-bar {
-        position: absolute;
-        width: 50%;
-        height: 8px;
-        background-color: #e31e24;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
-      .scaffold-image {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 40px;
-      }
-
-      .scaffold-image img {
-        width: 100%;
-        height: auto;
-        display: block;
-        opacity: 0.8;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 1024px) {
-        .section-one .heading,
-        .section-two .heading,
-        .section-two .heading-highlight {
-          font-size: 2.5rem;
+      /* ========== DESKTOP STYLES ========== */
+      @media (min-width: 768px) {
+        .logo {
+          width: 7rem;
         }
 
-        .about-content {
-          grid-template-columns: 1fr;
-          gap: 40px;
-        }
-
-        .red-accent {
+        #navBtn {
           display: none;
         }
-      }
 
-      @media (max-width: 768px) {
-        .section-one .heading,
-        .section-two .heading,
-        .section-two .heading-highlight {
-          font-size: 1.8rem;
+        .nav-container {
+          padding: 1.5rem 2.25rem;
         }
 
-        .section-one .heading span,
-        .section-two .heading-highlight {
-          padding: 8px 20px;
+        #navBar {
+          display: flex;
+          flex-direction: row;
+          gap: 2rem;
+          align-items: center;
+          position: static;
+          background-color: transparent;
+          width: auto;
+          padding: 0;
+          box-shadow: none;
+          height: auto;
         }
 
-        .text-content {
-          padding: 30px;
+        #navBar > li {
+          position: relative;
+          display: flex;
+          align-items: center;
+        }
+
+        #navBar > li > a {
+          padding: 0.25rem 0;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        /* ========== DESKTOP DROPDOWN ========== */
+        .dropdown {
+          width: auto;
+        }
+
+        .dropdown > a {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.375rem;
+          padding: 0.25rem 0;
+          justify-content: flex-start;
+        }
+
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 220px;
+          background: #ffffff;
+          border-left: none;
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+          padding: 0.75rem 0;
+          margin-top: 0.5rem;
+          max-height: none;
+          display: none;
+        }
+
+        .dropdown-menu.show {
+          display: block;
+          padding: 0.75rem 0;
+        }
+
+        .dropdown-menu li {
+          margin: 0;
+        }
+
+        .dropdown-menu a {
+          display: block;
+          padding: 0.6rem 1.25rem;
+          font-size: 0.95rem;
+          color: #585858;
+          letter-spacing: 1px;
+          white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+          background-color: #f3f3f3;
+          color: #3ca6ac;
+        }
+
+        .arrow {
           font-size: 0.9rem;
         }
+      }
 
-        .content-wrapper,
-        .scaffold-image {
-          padding: 0 20px;
+      /* ========== LARGE DESKTOP ========== */
+      @media (min-width: 1024px) {
+        .logo {
+          width: 8rem;
         }
 
-        .red-bar {
-          width: 70%;
+        .nav-container {
+          padding: 2rem 3rem;
+        }
+
+        #navBar {
+          gap: 2.5rem;
         }
       }
     </style>
   </head>
   <body>
-    <div class="about-banner">
-      <!-- Section 1: About The Company -->
-      <div class="section-one">
-        <h1 class="heading"><span>ABOUT</span> THE COMPANY</h1>
-
-        <div class="content-wrapper">
-          <div class="about-content">
-            <div class="text-content">
-              <p>
-                A backbone of real estate industry, scaffolding is the unsung
-                hero that ensures safety and efficiency at every stage of
-                construction. Scaffolding has evolved from the use of wood and
-                bamboo to high-quality metal fittings, platforms and pipes. And
-                with a vision to provide superior quality scaffolding with the
-                highest safety standards, Pune Scaffolding was incepted.
-              </p>
-              <br />
-              <p>
-                Catering to some esteemed names of construction industry, Pune
-                Scaffolding is now a respectable organization offering wide
-                range of rental services. From undertaking turnkey projects to
-                supply scaffolding equipment for consulting and assembling it,
-                Pune Scaffolding ensures that it adheres to highest standards of
-                safety, quality and service.
-              </p>
-            </div>
-
-            <div class="image-content">
-              <img
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=1000&fit=crop"
-                alt="Scaffolding Structure"
-              />
-            </div>
-          </div>
-
-          <div class="red-accent"></div>
-        </div>
+    <!-- ========== NAVIGATION HEADER ========== -->
+    <div class="header">
+      <!-- Logo Section -->
+      <div class="logo-container">
+        <img src="img/logo.png" alt="Unite Properties Logo" class="logo" />
       </div>
 
-      <!-- Section 2: What Makes Pune Scaffolding -->
-      <div class="section-two">
-        <div class="heading-block">
-          <h1 class="heading">
-            WHAT MAKES<br />
-            PUNE SCAFFOLDING<br />
-            THE <span class="heading-highlight">RIGHT CHOICE?</span>
-          </h1>
-          <div class="red-bar"></div>
-        </div>
+      <!-- Navigation Container -->
+      <div class="nav-container">
+        <!-- Navigation Menu -->
+        <ul id="navBar">
+          <li>
+            <a href="index.html">HOME</a>
+          </li>
+          <li>
+            <a href="about.html">ABOUT US</a>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" id="projectsBtn">
+              PROJECTS <span class="arrow">▾</span>
+            </a>
+            <ul class="dropdown-menu" id="projectsMenu">
+              <li><a href="new-projects.html">New Projects</a></li>
+              <li><a href="upcoming-projects.html">Upcoming Projects</a></li>
+              <li><a href="completed-projects.html">Completed Projects</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#careers">CAREERS</a>
+          </li>
+          <li>
+            <a href="#contact">CONTACT US</a>
+          </li>
+        </ul>
 
-        <div class="scaffold-image">
-          <img
-            src="https://images.unsplash.com/photo-1597476128573-b193bb965eb9?w=1400&h=600&fit=crop"
-            alt="Scaffolding Framework"
-          />
-        </div>
+        <!-- Mobile Menu Toggle Button -->
+        <button id="navBtn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
       </div>
     </div>
+
+    <!-- ========== NAVIGATION JAVASCRIPT ========== -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navBtn = document.getElementById("navBtn");
+        const navBar = document.getElementById("navBar");
+        const projectsBtn = document.getElementById("projectsBtn");
+        const projectsMenu = document.getElementById("projectsMenu");
+        const arrow = projectsBtn.querySelector(".arrow");
+
+        // Mobile menu toggle
+        navBtn.addEventListener("click", function () {
+          navBar.classList.toggle("show");
+        });
+
+        // Projects dropdown toggle
+        projectsBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          projectsMenu.classList.toggle("show");
+          arrow.classList.toggle("rotate");
+        });
+
+        // Close mobile menu when clicking on non-dropdown links
+        const navLinks = navBar.querySelectorAll("a");
+        navLinks.forEach((link) => {
+          link.addEventListener("click", function (e) {
+            // Don't close menu if clicking PROJECTS button
+            if (this.id === "projectsBtn") {
+              return;
+            }
+
+            // Close menu on mobile when clicking other links
+            if (window.innerWidth < 768) {
+              navBar.classList.remove("show");
+            }
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (event) {
+          const isClickInsideNav = navBar.contains(event.target);
+          const isClickOnButton = navBtn.contains(event.target);
+          const isClickOnProjectsBtn = projectsBtn.contains(event.target);
+
+          // Close mobile menu
+          if (
+            !isClickInsideNav &&
+            !isClickOnButton &&
+            navBar.classList.contains("show")
+          ) {
+            if (window.innerWidth < 768) {
+              navBar.classList.remove("show");
+            }
+          }
+
+          // Close dropdown on desktop when clicking outside
+          if (!isClickOnProjectsBtn && !projectsMenu.contains(event.target)) {
+            if (window.innerWidth >= 768) {
+              projectsMenu.classList.remove("show");
+              arrow.classList.remove("rotate");
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
