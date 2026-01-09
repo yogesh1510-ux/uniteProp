@@ -960,26 +960,47 @@
         }
       }
     </style>
+
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <!-- header  -->
+    <!-- ========== NAVIGATION HEADER ========== -->
     <div class="header">
+      <!-- Logo Section -->
       <div class="logo-container">
         <img src="img/logo.png" alt="Unite Properties Logo" class="logo" />
       </div>
 
+      <!-- Navigation Container -->
       <div class="nav-container">
+        <!-- Navigation Menu -->
         <ul id="navBar">
-          <li><a href="index.html">HOME</a></li>
-          <li><a href="about.html">ABOUT US</a></li>
-          <li><a href="project.html">PROJECTS</a></li>
-          <li><a href="#media">MEDIA</a></li>
-          <li><a href="#nri">NRI</a></li>
-          <li><a href="#careers">CAREERS</a></li>
-          <li><a href="#contact">CONTACT US</a></li>
+          <li>
+            <a href="index.html">HOME</a>
+          </li>
+          <li>
+            <a href="about.html">ABOUT US</a>
+          </li>
+          <li class="dropdown">
+            <a href="javascript:void(0)" id="projectsBtn">
+              PROJECTS <span class="arrow">▾</span>
+            </a>
+            <ul class="dropdown-menu" id="projectsMenu">
+              <li><a href="project.html">Ongoing Projects</a></li>
+              <li><a href="upcoming-projects.html">Upcoming Projects</a></li>
+              <li><a href="completed-projects.html">Completed Projects</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#careers">CAREERS</a>
+          </li>
+          <li>
+            <a href="#contact">CONTACT US</a>
+          </li>
         </ul>
 
+        <!-- Mobile Menu Toggle Button -->
         <button id="navBtn">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
@@ -1474,43 +1495,8 @@
       }
 
       // Mobile Navigation Toggle
-      document.addEventListener("DOMContentLoaded", function () {
-        const navBtn = document.getElementById("navBtn");
-        const navBar = document.getElementById("navBar");
-
-        navBtn.addEventListener("click", function () {
-          navBar.classList.toggle("show");
-        });
-
-        const navLinks = navBar.querySelectorAll("a");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function () {
-            if (window.innerWidth < 768) {
-              navBar.classList.remove("show");
-            }
-          });
-        });
-
-        document.addEventListener("click", function (event) {
-          const isClickInsideNav = navBar.contains(event.target);
-          const isClickOnButton = navBtn.contains(event.target);
-
-          if (
-            !isClickInsideNav &&
-            !isClickOnButton &&
-            navBar.classList.contains("show")
-          ) {
-            if (window.innerWidth < 768) {
-              navBar.classList.remove("show");
-            }
-          }
-        });
-
-        // Initialize blogs
-        initIndicators();
-        updateBlog();
-        startAutoAdvance();
-      });
     </script>
+
+    <script src="index.js"></script>
   </body>
 </html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Unite Properties - Navigation</title>
+    <title>Hero Section Test</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,363 +26,118 @@
         font-family: "Matangi", serif;
       }
 
-      /* ========== HEADER STYLES ========== */
-      .header {
-        display: flex;
-        background-color: #c1c0cd;
-      }
-
-      .logo-container {
-        padding: 1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .logo {
-        width: 3.5rem;
-        margin-left: 1.75rem;
-      }
-
-      .nav-container {
-        display: flex;
-        padding: 2.25rem;
+      /* Hero section - MOBILE FIRST */
+      .hero-section {
+        background-color: #ffffff;
         width: 100%;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 1rem;
+        margin: 2rem auto 0;
         position: relative;
       }
 
-      /* ========== MOBILE NAVIGATION ========== */
-      #navBar {
-        display: none;
-        list-style: none;
-        gap: 1rem;
-        flex-direction: column;
-        position: absolute;
-        right: 0;
-        top: 100%;
-        background-color: white;
+      .hero-image {
         width: 100%;
-        padding: 1.5rem;
-        z-index: 50;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease-in-out;
+        height: 250px;
+        display: block;
+        object-fit: cover;
       }
 
-      #navBar.show {
-        display: flex;
-      }
-
-      #navBar a {
-        text-decoration: none;
+      .hero-text {
+        position: relative;
+        text-align: center;
+        letter-spacing: 4.63px;
         color: #585858;
-        font-size: 1.1rem;
-        letter-spacing: 0.05em;
-        font-weight: bold;
+        font-size: 28px;
+        font-family: "Matangi", serif;
+        padding: 1.5rem 1rem;
+        background-color: #ffffff;
       }
 
-      #navBar a:hover {
-        color: #374151;
-      }
-
-      /* ========== MOBILE MENU BUTTON ========== */
-      #navBtn {
-        cursor: pointer;
-        background: transparent;
-        border: none;
-        padding: 0;
-      }
-
-      #navBtn svg {
-        width: 2.25rem;
-        height: 2.25rem;
-        color: #374151;
-      }
-
-      /* ========== DROPDOWN STYLES ========== */
-      .dropdown {
-        width: 100%;
-      }
-
-      .dropdown > a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .arrow {
-        font-size: 1rem;
-        transition: transform 0.3s ease;
-      }
-
-      .arrow.rotate {
-        transform: rotate(180deg);
-      }
-
-      /* ========== MOBILE DROPDOWN MENU ========== */
-      .dropdown-menu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.35s ease, padding 0.35s ease;
-        list-style: none;
-        background: #f9f9f9;
-        padding: 0 1rem;
-        margin-top: 0.5rem;
-        border-left: 3px solid #3ca6ac;
-      }
-
-      .dropdown-menu.show {
-        max-height: 300px;
-        padding: 0.75rem 1rem;
-      }
-
-      .dropdown-menu li {
-        margin: 0.4rem 0;
-      }
-
-      .dropdown-menu a {
-        font-size: 0.95rem;
-        color: #585858;
-        text-decoration: none;
-        letter-spacing: 1px;
-      }
-
-      .dropdown-menu a:hover {
-        color: #3ca6ac;
-      }
-
-      /* ========== TABLET STYLES ========== */
+      /* Tablet */
       @media (min-width: 640px) {
-        .logo-container {
-          padding: 1.5rem;
+        .hero-section {
+          background-color: #3ca6ac;
+          height: 400px;
+          width: 95%;
+          margin-top: 5rem;
+        }
+
+        .hero-image {
+          position: absolute;
+          height: 100%;
+          top: 10%;
+        }
+
+        .hero-text {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          color: #ffffff;
+          font-size: 45px;
+          padding-bottom: 2rem;
+          background-color: transparent;
         }
       }
 
-      /* ========== DESKTOP STYLES ========== */
+      /* Desktop */
       @media (min-width: 768px) {
-        .logo {
-          width: 7rem;
+        .hero-section {
+          height: 600px;
+          width: 90%;
+          margin-top: 6rem;
         }
 
-        #navBtn {
-          display: none;
-        }
-
-        .nav-container {
-          padding: 1.5rem 2.25rem;
-        }
-
-        #navBar {
-          display: flex;
-          flex-direction: row;
-          gap: 2rem;
-          align-items: center;
-          position: static;
-          background-color: transparent;
-          width: auto;
-          padding: 0;
-          box-shadow: none;
+        .hero-image {
+          position: absolute;
+          width: 130%;
+          max-width: none;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 12%;
           height: auto;
         }
 
-        #navBar > li {
-          position: relative;
-          display: flex;
-          align-items: center;
-        }
-
-        #navBar > li > a {
-          padding: 0.25rem 0;
-          display: inline-flex;
-          align-items: center;
-        }
-
-        /* ========== DESKTOP DROPDOWN ========== */
-        .dropdown {
-          width: auto;
-        }
-
-        .dropdown > a {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.375rem;
-          padding: 0.25rem 0;
-          justify-content: flex-start;
-        }
-
-        .dropdown-menu {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          width: 220px;
-          background: #ffffff;
-          border-left: none;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-          padding: 0.75rem 0;
-          margin-top: 0.5rem;
-          max-height: none;
-          display: none;
-        }
-
-        .dropdown-menu.show {
-          display: block;
-          padding: 0.75rem 0;
-        }
-
-        .dropdown-menu li {
-          margin: 0;
-        }
-
-        .dropdown-menu a {
-          display: block;
-          padding: 0.6rem 1.25rem;
-          font-size: 0.95rem;
-          color: #585858;
-          letter-spacing: 1px;
-          white-space: nowrap;
-        }
-
-        .dropdown-menu a:hover {
-          background-color: #f3f3f3;
-          color: #3ca6ac;
-        }
-
-        .arrow {
-          font-size: 0.9rem;
+        .hero-text {
+          padding-bottom: 3rem;
         }
       }
 
-      /* ========== LARGE DESKTOP ========== */
       @media (min-width: 1024px) {
-        .logo {
-          width: 8rem;
+        .hero-section {
+          height: 800px;
+          width: 1200px;
+          margin-top: 7rem;
         }
 
-        .nav-container {
-          padding: 2rem 3rem;
+        .hero-image {
+          top: 14%;
         }
 
-        #navBar {
-          gap: 2.5rem;
+        .hero-text {
+          padding-bottom: 4rem;
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .hero-section {
+          height: 900px;
+          width: 1468px;
+          margin-top: 8rem;
+        }
+
+        .hero-image {
+          top: 15%;
+          padding-left: 7rem;
+          padding-right: 7rem;
         }
       }
     </style>
   </head>
   <body>
-    <!-- ========== NAVIGATION HEADER ========== -->
-    <div class="header">
-      <!-- Logo Section -->
-      <div class="logo-container">
-        <img src="img/logo.png" alt="Unite Properties Logo" class="logo" />
-      </div>
-
-      <!-- Navigation Container -->
-      <div class="nav-container">
-        <!-- Navigation Menu -->
-        <ul id="navBar">
-          <li>
-            <a href="index.html">HOME</a>
-          </li>
-          <li>
-            <a href="about.html">ABOUT US</a>
-          </li>
-          <li class="dropdown">
-            <a href="javascript:void(0)" id="projectsBtn">
-              PROJECTS <span class="arrow">▾</span>
-            </a>
-            <ul class="dropdown-menu" id="projectsMenu">
-              <li><a href="new-projects.html">New Projects</a></li>
-              <li><a href="upcoming-projects.html">Upcoming Projects</a></li>
-              <li><a href="completed-projects.html">Completed Projects</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#careers">CAREERS</a>
-          </li>
-          <li>
-            <a href="#contact">CONTACT US</a>
-          </li>
-        </ul>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button id="navBtn">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-      </div>
+    <!-- Hero section -->
+    <div class="hero-section">
+      <img src="img/banner-5.png" alt="Hero Banner" class="hero-image" />
+      <p class="hero-text">A PEEK INTO WHERE WE STAND UNITED!</p>
     </div>
-
-    <!-- ========== NAVIGATION JAVASCRIPT ========== -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const navBtn = document.getElementById("navBtn");
-        const navBar = document.getElementById("navBar");
-        const projectsBtn = document.getElementById("projectsBtn");
-        const projectsMenu = document.getElementById("projectsMenu");
-        const arrow = projectsBtn.querySelector(".arrow");
-
-        // Mobile menu toggle
-        navBtn.addEventListener("click", function () {
-          navBar.classList.toggle("show");
-        });
-
-        // Projects dropdown toggle
-        projectsBtn.addEventListener("click", function (e) {
-          e.preventDefault();
-          projectsMenu.classList.toggle("show");
-          arrow.classList.toggle("rotate");
-        });
-
-        // Close mobile menu when clicking on non-dropdown links
-        const navLinks = navBar.querySelectorAll("a");
-        navLinks.forEach((link) => {
-          link.addEventListener("click", function (e) {
-            // Don't close menu if clicking PROJECTS button
-            if (this.id === "projectsBtn") {
-              return;
-            }
-
-            // Close menu on mobile when clicking other links
-            if (window.innerWidth < 768) {
-              navBar.classList.remove("show");
-            }
-          });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener("click", function (event) {
-          const isClickInsideNav = navBar.contains(event.target);
-          const isClickOnButton = navBtn.contains(event.target);
-          const isClickOnProjectsBtn = projectsBtn.contains(event.target);
-
-          // Close mobile menu
-          if (
-            !isClickInsideNav &&
-            !isClickOnButton &&
-            navBar.classList.contains("show")
-          ) {
-            if (window.innerWidth < 768) {
-              navBar.classList.remove("show");
-            }
-          }
-
-          // Close dropdown on desktop when clicking outside
-          if (!isClickOnProjectsBtn && !projectsMenu.contains(event.target)) {
-            if (window.innerWidth >= 768) {
-              projectsMenu.classList.remove("show");
-              arrow.classList.remove("rotate");
-            }
-          }
-        });
-      });
-    </script>
   </body>
 </html>
